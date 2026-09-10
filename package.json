@@ -1,16 +1,52 @@
 {
-  "name": "@yourname/astro-icons",
-  "version": "0.1.0",
-  "description": "Simple SVG icons for Indian astrology",
+  "name": "@astro/icons",
+  "version": "1.0.0",
+  "description": "Gold-standard Vedic astrology SVG icons with optical sizing, 3D medallion effects, and React support",
   "type": "module",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./react": "./src/react.js",
+    "./components/rashi": "./src/components/rashi.js",
+    "./rashi/*": "./src/rashi/*",
+    "./rashi/compact/*": "./src/rashi/compact/*"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build"
   },
+  "keywords": [
+    "astrology",
+    "vedic",
+    "rashi",
+    "zodiac",
+    "icons",
+    "svg",
+    "web-components",
+    "react",
+    "horoscope",
+    "dinamalar",
+    "medallion"
+  ],
+  "author": "",
+  "license": "MIT",
   "devDependencies": {
     "imagetracerjs": "^1.2.6",
     "potrace": "^2.1.8",
     "sharp": "^0.35.4",
     "vite": "^7.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
   }
 }
