@@ -12,8 +12,18 @@
             padding: 40px;
         }
 
-        astro-rashi {
-            color: #b45309;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 120px);
+            gap: 32px;
+        }
+
+        .grid div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: #7c2d12;
         }
     </style>
 </head>
@@ -22,20 +32,69 @@
 
     <h1>Rashi Icons</h1>
 
-    <astro-rashi icon="mesha" size="64" color="#8B4513">
-    </astro-rashi>
+    <div class="grid">
 
-    <astro-rashi icon="mesha" size="64" color="#B91C1C">
-    </astro-rashi>
+        <div>
+            <astro-rashi icon="mesha" size="64"></astro-rashi>
+            <span>Mesha</span>
+        </div>
 
-    <astro-rashi icon="mesha" size="64" color="#1D4ED8">
-    </astro-rashi>
+        <div>
+            <astro-rashi icon="rishabha" size="64"></astro-rashi>
+            <span>Rishabha</span>
+        </div>
 
-    <astro-rashi icon="mesha" size="80" color="#7C2D12" bg="#FEF3C7" radius="12">
-    </astro-rashi>
+        <div>
+            <astro-rashi icon="mithuna" size="64"></astro-rashi>
+            <span>Mithuna</span>
+        </div>
 
-    <astro-rashi icon="mesha" size="80" color="#FFFFFF" bg="#7C3AED" radius="40">
-    </astro-rashi>
+        <div>
+            <astro-rashi icon="kataka" size="64"></astro-rashi>
+            <span>Kataka</span>
+        </div>
+
+        <div>
+            <astro-rashi icon="simha" size="64"></astro-rashi>
+            <span>Simha</span>
+        </div>
+
+        <div>
+            <astro-rashi icon="kanya" size="64"></astro-rashi>
+            <span>Kanya</span>
+        </div>
+
+        <div>
+            <astro-rashi icon="thula" size="64"></astro-rashi>
+            <span>Thula</span>
+        </div>
+
+        <div>
+            <astro-rashi icon="vrischika" size="64"></astro-rashi>
+            <span>Vrischika</span>
+        </div>
+
+        <div>
+            <astro-rashi icon="dhanus" size="64"></astro-rashi>
+            <span>Dhanus</span>
+        </div>
+
+        <div>
+            <astro-rashi icon="makara" size="64"></astro-rashi>
+            <span>Makara</span>
+        </div>
+
+        <div>
+            <astro-rashi icon="kumbha" size="64"></astro-rashi>
+            <span>Kumbha</span>
+        </div>
+
+        <div>
+            <astro-rashi icon="meena" size="64"></astro-rashi>
+            <span>Meena</span>
+        </div>
+
+    </div>
 
     <script type="module" src="/src/components/rashi.js"></script>
 

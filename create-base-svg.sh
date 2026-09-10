@@ -1,3 +1,5 @@
+for icon in rishabha mithuna kataka simha kanya thula vrischika dhanus makara kumbha meena; do
+  cat > "src/rashi/$icon.svg" <<'EOF'
 <svg
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 64 64"
@@ -11,3 +13,5 @@
     stroke-linejoin="round"
   />
 </svg>
+EOF
+done
