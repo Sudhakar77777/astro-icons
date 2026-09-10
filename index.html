@@ -4,17 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astro Icons — 12 Rāśi Multi-Scale Showcase</title>
+    <title>Astro Icons — 12 Rāśi Multi-Scale & 3D Medallion Studio</title>
 
     <style>
         :root {
-            --bg-primary: #090d16;
-            --bg-card: #131b2b;
-            --border-card: #223049;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --gold-primary: #facc15;
-            --rashi-color: #facc15;
+            --bg-body: #060911;
+            --bg-panel: #0d1322;
+            --bg-card: #151d30;
+            --border-panel: #1b263b;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --gold: #facc15;
+            --gold-glow: rgba(250, 204, 21, 0.35);
         }
 
         * {
@@ -25,170 +27,259 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            padding: 40px 24px 80px;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            padding: 24px 16px 80px;
             min-height: 100vh;
         }
 
         .header {
             text-align: center;
-            max-width: 900px;
-            margin: 0 auto 48px;
+            max-width: 1200px;
+            margin: 0 auto 28px;
         }
 
-        .badge {
+        .tag {
             display: inline-block;
             background: rgba(250, 204, 21, 0.12);
-            color: var(--gold-primary);
+            color: var(--gold);
             border: 1px solid rgba(250, 204, 21, 0.3);
             padding: 4px 14px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
             text-transform: uppercase;
         }
 
         h1 {
             font-size: 32px;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: -0.5px;
-            margin-bottom: 8px;
-            color: #ffffff;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #facc15 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        p.subtitle {
-            color: var(--text-secondary);
-            font-size: 15px;
-            line-height: 1.5;
+        p.sub {
+            color: var(--text-muted);
+            font-size: 14px;
         }
 
-        .theme-bar {
+        /* Top Global Size Bar (Wide Viewport) */
+        .global-bar {
+            max-width: 1920px;
+            margin: 0 auto 24px;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-panel);
+            border-radius: 16px;
+            padding: 14px 20px;
             display: flex;
-            justify-content: center;
+            flex-wrap: wrap;
             align-items: center;
-            gap: 12px;
-            margin-top: 24px;
+            justify-content: space-between;
+            gap: 16px;
         }
 
-        .theme-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 2px solid transparent;
+        .size-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .size-btn {
+            background: #1b263b;
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
             cursor: pointer;
-            transition: transform 0.15s ease, border-color 0.15s ease;
+            transition: all 0.15s ease;
         }
 
-        .theme-btn:hover, .theme-btn.active {
-            transform: scale(1.15);
-            border-color: #ffffff;
+        .size-btn:hover,
+        .size-btn.active {
+            background: var(--gold);
+            color: #0f172a;
+            border-color: var(--gold);
+            box-shadow: 0 0 12px var(--gold-glow);
         }
 
-        .section-container {
-            max-width: 1280px;
-            margin: 0 auto 56px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
+        .optical-badge {
+            background: #022c22;
+            color: #34d399;
+            border: 1px solid #059669;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Wide Dual Comparison Workbench */
+        .workbench-grid {
+            max-width: 1920px;
+            margin: 0 auto 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 1100px) {
+            .workbench-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-panel);
             border-radius: 20px;
-            padding: 28px 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
         }
 
-        .section-header {
+        .panel-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border-card);
-            padding-bottom: 16px;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 12px;
         }
 
-        .section-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #f1f5f9;
+        .panel-title {
+            font-size: 17px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .size-tag {
-            background: #1e293b;
-            color: var(--gold-primary);
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-family: monospace;
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+            background: #070b14;
+            border: 1px solid var(--border-subtle);
+            padding: 14px;
+            border-radius: 14px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .control-group label {
+            font-size: 10.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
             font-weight: 700;
         }
 
-        /* Responsive Grids */
-        .icon-grid {
+        .control-group select {
+            background: #151d30;
+            color: #f1f5f9;
+            border: 1px solid #28354e;
+            padding: 6px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .color-pick-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .color-pick-wrap input[type="color"] {
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: none;
+            flex-shrink: 0;
+        }
+
+        .preset-pills {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+
+        .pill:hover {
+            transform: scale(1.25);
+        }
+
+        /* Dynamic Responsive Icon Grid with Zero Collision */
+        .icon-display-grid {
             display: grid;
             gap: 16px;
             justify-items: center;
-            align-items: center;
+            align-items: stretch;
+            flex: 1;
         }
 
-        .grid-128 {
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 24px;
-        }
-
-        .grid-64 {
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 20px;
-        }
-
-        .grid-48 {
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 16px;
-        }
-
-        .grid-36 {
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 12px;
-        }
-
-        .grid-24 {
-            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-            gap: 10px;
-        }
-
-        .icon-card {
+        .icon-tile {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 12px 8px;
-            border-radius: 12px;
-            background: rgba(11, 17, 32, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(7, 11, 20, 0.6);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 14px 10px;
             width: 100%;
             transition: all 0.2s ease;
         }
 
-        .icon-card:hover {
-            background: rgba(250, 204, 21, 0.08);
-            border-color: rgba(250, 204, 21, 0.3);
+        .icon-tile:hover {
+            border-color: rgba(250, 204, 21, 0.4);
             transform: translateY(-2px);
+            background: rgba(15, 23, 42, 0.9);
         }
 
-        .icon-card span {
-            margin-top: 8px;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-secondary);
+        .icon-tile .name {
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-top: 10px;
             text-align: center;
         }
 
-        .grid-36 .icon-card span,
-        .grid-24 .icon-card span {
-            font-size: 10px;
-            margin-top: 4px;
+        /* Multi-Scale Matrix Section (Wide) */
+        .matrix-section {
+            max-width: 1920px;
+            margin: 0 auto;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-panel);
+            border-radius: 20px;
+            padding: 26px 22px;
         }
     </style>
 </head>
@@ -196,108 +287,438 @@
 <body>
 
     <div class="header">
-        <span class="badge">Vedic Astrology Design System</span>
-        <h1>12 Rāśi Multi-Scale Icon Suite</h1>
-        <p class="subtitle">Pure SVG vector architecture • Monochromatic currentColor • Verified at 128px, 64px, 48px, 36px, and 24px</p>
-        
-        <div class="theme-bar">
-            <span style="font-size: 13px; color: var(--text-secondary); margin-right: 6px;">Palette:</span>
-            <button class="theme-btn active" style="background: #facc15;" onclick="setColor('#facc15')" title="Gold / Surya"></button>
-            <button class="theme-btn" style="background: #fb923c;" onclick="setColor('#fb923c')" title="Terracotta / Mars"></button>
-            <button class="theme-btn" style="background: #ef4444;" onclick="setColor('#ef4444')" title="Crimson / Agni"></button>
-            <button class="theme-btn" style="background: #38bdf8;" onclick="setColor('#38bdf8')" title="Cyan / Chandra"></button>
-            <button class="theme-btn" style="background: #34d399;" onclick="setColor('#34d399')" title="Emerald / Budha"></button>
-            <button class="theme-btn" style="background: #ffffff;" onclick="setColor('#ffffff')" title="Pure White"></button>
+        <span class="tag">Vedic Astrology Design System</span>
+        <h1>12 Rāśi Multi-Scale & 3D Medallion Studio</h1>
+        <p class="sub">Compare 2 live settings • Tight-fitted large graphics • Customizable Rim/Border Contrast Line •
+            Auto Optical Sizing</p>
+    </div>
+
+    <!-- Global Scale Control -->
+    <div class="global-bar">
+        <div class="size-selector">
+            <span style="font-size: 13px; font-weight: 600; color: #cbd5e1;">Global Scale:</span>
+            <button class="size-btn" onclick="setGlobalSize(24)">24px</button>
+            <button class="size-btn" onclick="setGlobalSize(36)">36px</button>
+            <button class="size-btn" onclick="setGlobalSize(48)">48px</button>
+            <button class="size-btn active" onclick="setGlobalSize(64)">64px</button>
+            <button class="size-btn" onclick="setGlobalSize(96)">96px</button>
+            <button class="size-btn" onclick="setGlobalSize(128)">128px</button>
+        </div>
+
+        <div id="optical-status" class="optical-badge">
+            <span>●</span>
+            <span id="optical-text">Detailed Cut Active (Scale &ge; 48px)</span>
         </div>
     </div>
 
-    <!-- 128px Size Box -->
-    <div class="section-container">
-        <div class="section-header">
-            <div class="section-title">Large Display Size <span class="size-tag">128px</span></div>
-            <span style="font-size: 13px; color: var(--text-secondary);">Hero emblems & detail viewing</span>
+    <!-- Wide Dual Comparison Workbench -->
+    <div class="workbench-grid">
+
+        <!-- Setting A (Left) -->
+        <div class="panel" id="panel-a">
+            <div class="panel-header">
+                <div class="panel-title" style="color: #facc15;">
+                    <span>Setting A</span>
+                    <span style="font-size: 12px; color: var(--text-muted); font-weight: normal;">(Gold Medallion on
+                        Crimson)</span>
+                </div>
+                <button class="size-btn" onclick="presetA('gold_medallion')"
+                    style="padding: 3px 8px; font-size: 11px;">Preset: Sacred Gold</button>
+            </div>
+
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label>Icon (FG) Color</label>
+                    <div class="color-pick-wrap">
+                        <input type="color" id="fg-a" value="#facc15" onchange="updatePanelA()">
+                        <div class="preset-pills">
+                            <div class="pill" style="background: #facc15;" onclick="setFgA('#facc15')" title="Gold">
+                            </div>
+                            <div class="pill" style="background: #ffffff;" onclick="setFgA('#ffffff')" title="White">
+                            </div>
+                            <div class="pill" style="background: #fb923c;" onclick="setFgA('#fb923c')"
+                                title="Terracotta"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Background Color</label>
+                    <div class="color-pick-wrap">
+                        <input type="color" id="bg-a" value="#781d1d" onchange="updatePanelA()">
+                        <div class="preset-pills">
+                            <div class="pill" style="background: #781d1d;" onclick="setBgA('#781d1d')" title="Crimson">
+                            </div>
+                            <div class="pill" style="background: #451a03;" onclick="setBgA('#451a03')"
+                                title="Deep Bronze"></div>
+                            <div class="pill" style="background: #022c22;" onclick="setBgA('#022c22')" title="Emerald">
+                            </div>
+                            <div class="pill" style="background: transparent; border-color:#888;"
+                                onclick="setBgA('transparent')" title="Clear"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Outside Rim Color</label>
+                    <div class="color-pick-wrap">
+                        <input type="color" id="ring-a" value="#facc15" onchange="updatePanelA()">
+                        <div class="preset-pills">
+                            <div class="pill" style="background: #facc15;" onclick="setRingA('#facc15')"
+                                title="Gold Rim"></div>
+                            <div class="pill" style="background: #f43f5e;" onclick="setRingA('#f43f5e')"
+                                title="Rose Rim"></div>
+                            <div class="pill" style="background: #38bdf8;" onclick="setRingA('#38bdf8')"
+                                title="Cyan Rim"></div>
+                            <div class="pill" style="background: #ffffff;" onclick="setRingA('#ffffff')"
+                                title="White Rim"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>3D Effect</label>
+                    <select id="effect-a" onchange="updatePanelA()">
+                        <option value="medallion" selected>3D Gold Medallion</option>
+                        <option value="button">3D Raised Button</option>
+                        <option value="glass">Glassmorphism</option>
+                        <option value="emboss">Inset / Carved</option>
+                        <option value="glow">Sacred Glow</option>
+                        <option value="none">Flat (None)</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>Shape / Radius</label>
+                    <select id="radius-a" onchange="updatePanelA()">
+                        <option value="50%" selected>Circle (50%)</option>
+                        <option value="16">Squircle (16px)</option>
+                        <option value="8">Rounded (8px)</option>
+                        <option value="0">Square (0px)</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>Optical Cut</label>
+                    <select id="variant-a" onchange="updatePanelA()">
+                        <option value="auto" selected>Auto (by size)</option>
+                        <option value="compact">Force Compact</option>
+                        <option value="detailed">Force Detailed</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="icon-display-grid" id="grid-a"></div>
         </div>
-        <div class="icon-grid grid-128" id="grid-128"></div>
+
+        <!-- Setting B (Right) -->
+        <div class="panel" id="panel-b">
+            <div class="panel-header">
+                <div class="panel-title" style="color: #38bdf8;">
+                    <span>Setting B</span>
+                    <span style="font-size: 12px; color: var(--text-muted); font-weight: normal;">(Cyber / Tactical 3D
+                        Button)</span>
+                </div>
+                <button class="size-btn" onclick="presetB('tactical_button')"
+                    style="padding: 3px 8px; font-size: 11px;">Preset: Cyan Slate</button>
+            </div>
+
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label>Icon (FG) Color</label>
+                    <div class="color-pick-wrap">
+                        <input type="color" id="fg-b" value="#ffffff" onchange="updatePanelB()">
+                        <div class="preset-pills">
+                            <div class="pill" style="background: #ffffff;" onclick="setFgB('#ffffff')" title="White">
+                            </div>
+                            <div class="pill" style="background: #38bdf8;" onclick="setFgB('#38bdf8')" title="Cyan">
+                            </div>
+                            <div class="pill" style="background: #34d399;" onclick="setFgB('#34d399')" title="Mint">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Background Color</label>
+                    <div class="color-pick-wrap">
+                        <input type="color" id="bg-b" value="#111827" onchange="updatePanelB()">
+                        <div class="preset-pills">
+                            <div class="pill" style="background: #111827;" onclick="setBgB('#111827')" title="Obsidian">
+                            </div>
+                            <div class="pill" style="background: #1e3a8a;" onclick="setBgB('#1e3a8a')"
+                                title="Royal Navy"></div>
+                            <div class="pill" style="background: #0f766e;" onclick="setBgB('#0f766e')" title="Teal">
+                            </div>
+                            <div class="pill" style="background: transparent; border-color:#888;"
+                                onclick="setBgB('transparent')" title="Clear"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Outside Rim Color</label>
+                    <div class="color-pick-wrap">
+                        <input type="color" id="ring-b" value="#38bdf8" onchange="updatePanelB()">
+                        <div class="preset-pills">
+                            <div class="pill" style="background: #38bdf8;" onclick="setRingB('#38bdf8')"
+                                title="Cyan Rim"></div>
+                            <div class="pill" style="background: #34d399;" onclick="setRingB('#34d399')"
+                                title="Emerald Rim"></div>
+                            <div class="pill" style="background: #a855f7;" onclick="setRingB('#a855f7')"
+                                title="Purple Rim"></div>
+                            <div class="pill" style="background: #ffffff;" onclick="setRingB('#ffffff')"
+                                title="White Rim"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>3D Effect</label>
+                    <select id="effect-b" onchange="updatePanelB()">
+                        <option value="button" selected>3D Raised Button</option>
+                        <option value="medallion">3D Gold Medallion</option>
+                        <option value="glass">Glassmorphism</option>
+                        <option value="emboss">Inset / Carved</option>
+                        <option value="glow">Sacred Glow</option>
+                        <option value="none">Flat (None)</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>Shape / Radius</label>
+                    <select id="radius-b" onchange="updatePanelB()">
+                        <option value="14" selected>Rounded (14px)</option>
+                        <option value="50%">Circle (50%)</option>
+                        <option value="22">Squircle (22px)</option>
+                        <option value="0">Square (0px)</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>Optical Cut</label>
+                    <select id="variant-b" onchange="updatePanelB()">
+                        <option value="auto" selected>Auto (by size)</option>
+                        <option value="compact">Force Compact</option>
+                        <option value="detailed">Force Detailed</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="icon-display-grid" id="grid-b"></div>
+        </div>
+
     </div>
 
-    <!-- 64px Size Box -->
-    <div class="section-container">
-        <div class="section-header">
-            <div class="section-title">Standard Chart Size <span class="size-tag">64px</span></div>
-            <span style="font-size: 13px; color: var(--text-secondary);">Kundali & birth chart cells</span>
-        </div>
-        <div class="icon-grid grid-64" id="grid-64"></div>
-    </div>
+    <!-- Multi-Scale Verification Matrix -->
+    <div class="matrix-section">
+        <h2 style="font-size: 20px; margin-bottom: 6px; color: var(--gold);">Multi-Scale Size Verification Matrix</h2>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 24px;">Examine how optical sizing
+            automatically switches to simplified micro-cuts at $\le$36px for 100% legibility.</p>
 
-    <!-- 48px Size Box -->
-    <div class="section-container">
-        <div class="section-header">
-            <div class="section-title">Medium UI Size <span class="size-tag">48px</span></div>
-            <span style="font-size: 13px; color: var(--text-secondary);">Dashboard cards & summaries</span>
-        </div>
-        <div class="icon-grid grid-48" id="grid-48"></div>
-    </div>
-
-    <!-- 36px Size Box -->
-    <div class="section-container">
-        <div class="section-header">
-            <div class="section-title">Compact Size <span class="size-tag">36px</span></div>
-            <span style="font-size: 13px; color: var(--text-secondary);">Transit lists & sidebars</span>
-        </div>
-        <div class="icon-grid grid-36" id="grid-36"></div>
-    </div>
-
-    <!-- 24px Size Box -->
-    <div class="section-container">
-        <div class="section-header">
-            <div class="section-title">Micro UI Size <span class="size-tag">24px</span></div>
-            <span style="font-size: 13px; color: var(--text-secondary);">Buttons, tables & inline badges</span>
-        </div>
-        <div class="icon-grid grid-24" id="grid-24"></div>
+        <div id="matrix-container"></div>
     </div>
 
     <script type="module" src="/src/components/rashi.js"></script>
+
     <script>
         const rashis = [
-            { id: "mesha", name: "Mesha (மேஷம்)" },
-            { id: "rishabha", name: "Rishabha (ரிஷபம்)" },
-            { id: "mithuna", name: "Mithuna (மிதுனம்)" },
-            { id: "kataka", name: "Kataka (கடகம்)" },
-            { id: "simha", name: "Simha (சிம்மம்)" },
-            { id: "kanya", name: "Kanya (கன்னி)" },
-            { id: "thula", name: "Thula (துலாம்)" },
-            { id: "vrischika", name: "Vrischika (விருச்சிகம்)" },
-            { id: "dhanus", name: "Dhanus (தனுசு)" },
-            { id: "makara", name: "Makara (மகரம்)" },
-            { id: "kumbha", name: "Kumbha (கும்பம்)" },
-            { id: "meena", name: "Meena (மீனம்)" }
+            { id: "mesha", name: "Mesha", tamil: "மேஷம்" },
+            { id: "rishabha", name: "Rishabha", tamil: "ரிஷபம்" },
+            { id: "mithuna", name: "Mithuna", tamil: "மிதுனம்" },
+            { id: "kataka", name: "Kataka", tamil: "கடகம்" },
+            { id: "simha", name: "Simha", tamil: "சிம்மம்" },
+            { id: "kanya", name: "Kanya", tamil: "கன்னி" },
+            { id: "thula", name: "Thula", tamil: "துலாம்" },
+            { id: "vrischika", name: "Vrischika", tamil: "விருச்சிகம்" },
+            { id: "dhanus", name: "Dhanus", tamil: "தனுசு" },
+            { id: "makara", name: "Makara", tamil: "மகரம்" },
+            { id: "kumbha", name: "Kumbha", tamil: "கும்பம்" },
+            { id: "meena", name: "Meena", tamil: "மீனம்" }
         ];
 
-        const sizes = [128, 64, 48, 36, 24];
+        let currentGlobalSize = 64;
 
-        sizes.forEach(size => {
-            const container = document.getElementById(`grid-${size}`);
-            rashis.forEach(r => {
-                const card = document.createElement("div");
-                card.className = "icon-card";
-                card.innerHTML = `
-                    <astro-rashi icon="${r.id}" size="${size}"></astro-rashi>
-                    <span>${r.name.split(" ")[0]}</span>
-                `;
-                container.appendChild(card);
+        function getGridCols(sz) {
+            if (sz >= 128) return "repeat(auto-fill, minmax(145px, 1fr))";
+            if (sz >= 96) return "repeat(auto-fill, minmax(115px, 1fr))";
+            if (sz >= 64) return "repeat(auto-fill, minmax(90px, 1fr))";
+            if (sz >= 48) return "repeat(auto-fill, minmax(75px, 1fr))";
+            return "repeat(auto-fill, minmax(65px, 1fr))";
+        }
+
+        function setGlobalSize(sz) {
+            currentGlobalSize = sz;
+            document.querySelectorAll(".size-btn").forEach(b => {
+                b.classList.toggle("active", b.textContent.trim() === `${sz}px`);
             });
-        });
 
-        function setColor(hex) {
-            document.documentElement.style.setProperty("--rashi-color", hex);
-            document.querySelectorAll("astro-rashi").forEach(el => el.setAttribute("color", hex));
-            document.querySelectorAll(".theme-btn").forEach(btn => {
-                btn.classList.toggle("active", btn.style.background === hex || btn.getAttribute("onclick").includes(hex));
+            const status = document.getElementById("optical-text");
+            const badge = document.getElementById("optical-status");
+            if (sz < 48) {
+                status.textContent = `Compact Micro-Cut Active (Scale = ${sz}px < 48px)`;
+                badge.style.background = "#1e1b4b";
+                badge.style.color = "#a5b4fc";
+                badge.style.borderColor = "#6366f1";
+            } else {
+                status.textContent = `Detailed Cut Active (Scale = ${sz}px >= 48px)`;
+                badge.style.background = "#022c22";
+                badge.style.color = "#34d399";
+                badge.style.borderColor = "#059669";
+            }
+
+            document.getElementById("grid-a").style.gridTemplateColumns = getGridCols(sz);
+            document.getElementById("grid-b").style.gridTemplateColumns = getGridCols(sz);
+
+            updatePanelA();
+            updatePanelB();
+        }
+
+        function updatePanelA() {
+            const fg = document.getElementById("fg-a").value;
+            const bg = document.getElementById("bg-a").value;
+            const ring = document.getElementById("ring-a").value;
+            const effect = document.getElementById("effect-a").value;
+            const radius = document.getElementById("radius-a").value;
+            const variant = document.getElementById("variant-a").value;
+
+            const grid = document.getElementById("grid-a");
+            grid.style.gridTemplateColumns = getGridCols(currentGlobalSize);
+            grid.innerHTML = "";
+
+            rashis.forEach(r => {
+                const tile = document.createElement("div");
+                tile.className = "icon-tile";
+                tile.innerHTML = `
+                    <astro-rashi 
+                        icon="${r.id}" 
+                        size="${currentGlobalSize}" 
+                        color="${fg}" 
+                        bg="${bg}" 
+                        ring="${ring}"
+                        effect="${effect}" 
+                        radius="${radius}" 
+                        variant="${variant}">
+                    </astro-rashi>
+                    <div class="name">${r.name}</div>
+                `;
+                grid.appendChild(tile);
             });
         }
-        window.setColor = setColor;
-    </script>
 
+        function updatePanelB() {
+            const fg = document.getElementById("fg-b").value;
+            const bg = document.getElementById("bg-b").value;
+            const ring = document.getElementById("ring-b").value;
+            const effect = document.getElementById("effect-b").value;
+            const radius = document.getElementById("radius-b").value;
+            const variant = document.getElementById("variant-b").value;
+
+            const grid = document.getElementById("grid-b");
+            grid.style.gridTemplateColumns = getGridCols(currentGlobalSize);
+            grid.innerHTML = "";
+
+            rashis.forEach(r => {
+                const tile = document.createElement("div");
+                tile.className = "icon-tile";
+                tile.innerHTML = `
+                    <astro-rashi 
+                        icon="${r.id}" 
+                        size="${currentGlobalSize}" 
+                        color="${fg}" 
+                        bg="${bg}" 
+                        ring="${ring}"
+                        effect="${effect}" 
+                        radius="${radius}" 
+                        variant="${variant}">
+                    </astro-rashi>
+                    <div class="name">${r.name}</div>
+                `;
+                grid.appendChild(tile);
+            });
+        }
+
+        function setFgA(c) { document.getElementById("fg-a").value = c; updatePanelA(); }
+        function setBgA(c) { document.getElementById("bg-a").value = c; updatePanelA(); }
+        function setRingA(c) { document.getElementById("ring-a").value = c; updatePanelA(); }
+
+        function setFgB(c) { document.getElementById("fg-b").value = c; updatePanelB(); }
+        function setBgB(c) { document.getElementById("bg-b").value = c; updatePanelB(); }
+        function setRingB(c) { document.getElementById("ring-b").value = c; updatePanelB(); }
+
+        function presetA(type) {
+            if (type === 'gold_medallion') {
+                setFgA("#facc15");
+                setBgA("#781d1d");
+                setRingA("#facc15");
+                document.getElementById("effect-a").value = "medallion";
+                document.getElementById("radius-a").value = "50%";
+                updatePanelA();
+            }
+        }
+
+        function presetB(type) {
+            if (type === 'tactical_button') {
+                setFgB("#ffffff");
+                setBgB("#111827");
+                setRingB("#38bdf8");
+                document.getElementById("effect-b").value = "button";
+                document.getElementById("radius-b").value = "14";
+                updatePanelB();
+            }
+        }
+
+        function renderMatrix() {
+            const container = document.getElementById("matrix-container");
+            container.innerHTML = "";
+
+            const matrixSizes = [128, 64, 48, 36, 24];
+
+            matrixSizes.forEach(sz => {
+                const row = document.createElement("div");
+                row.style.marginBottom = "20px";
+                row.style.background = "#070b14";
+                row.style.border = "1px solid rgba(255,255,255,0.06)";
+                row.style.borderRadius = "14px";
+                row.style.padding = "16px";
+
+                const isComp = sz < 48;
+                row.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <span style="font-weight: 700; font-size: 15px; color: #f1f5f9;">Display Size: ${sz}px</span>
+                        <span style="font-size: 12px; color: ${isComp ? '#a5b4fc' : '#34d399'}; font-weight: 600;">
+                            ${isComp ? '⚡ Auto: Ultra-Compact Micro-Cut' : '✦ Auto: Detailed Cut'}
+                        </span>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center;">
+                        ${rashis.map(r => `
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                                <astro-rashi icon="${r.id}" size="${sz}" color="#facc15" bg="#781d1d" ring="#facc15" effect="medallion" radius="50%"></astro-rashi>
+                                <span style="font-size: 10px; color: #94a3b8;">${r.name}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        window.setGlobalSize = setGlobalSize;
+        window.updatePanelA = updatePanelA;
+        window.updatePanelB = updatePanelB;
+        window.setFgA = setFgA;
+        window.setBgA = setBgA;
+        window.setRingA = setRingA;
+        window.setFgB = setFgB;
+        window.setBgB = setBgB;
+        window.setRingB = setRingB;
+        window.presetA = presetA;
+        window.presetB = presetB;
+
+        // Initial mount
+        setGlobalSize(64);
+        renderMatrix();
+    </script>
 </body>
 
 </html>
