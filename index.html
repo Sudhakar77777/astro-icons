@@ -17,6 +17,7 @@
             --text-muted: #94a3b8;
             --gold: #facc15;
             --gold-glow: rgba(250, 204, 21, 0.35);
+            --checker-size: 14px;
         }
 
         * {
@@ -31,12 +32,44 @@
             color: var(--text-main);
             padding: 24px 16px 80px;
             min-height: 100vh;
+            transition: background 0.2s ease;
+        }
+
+        /* Preview Canvas Themes */
+        body.canvas-checkerboard {
+            --bg-body: #1e293b;
+            background-image: linear-gradient(45deg, #0f172a 25%, transparent 25%),
+                              linear-gradient(-45deg, #0f172a 25%, transparent 25%),
+                              linear-gradient(45deg, transparent 75%, #0f172a 75%),
+                              linear-gradient(-45deg, transparent 75%, #0f172a 75%);
+            background-size: 24px 24px;
+            background-position: 0 0, 0 12px, 12px -12px, -12px 0px;
+        }
+
+        body.canvas-white {
+            --bg-body: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --bg-panel: #ffffff;
+            --border-panel: #e2e8f0;
+            --border-subtle: rgba(0, 0, 0, 0.08);
+            background: #f1f5f9;
+        }
+
+        body.canvas-parchment {
+            --bg-body: #faf5eb;
+            --text-main: #292524;
+            --text-muted: #78716c;
+            --bg-panel: #fffdf9;
+            --border-panel: #e7e5e4;
+            --border-subtle: rgba(0, 0, 0, 0.08);
+            background: #f5eedc;
         }
 
         .header {
             text-align: center;
-            max-width: 1200px;
-            margin: 0 auto 28px;
+            max-width: 1400px;
+            margin: 0 auto 24px;
         }
 
         .tag {
@@ -63,12 +96,18 @@
             -webkit-text-fill-color: transparent;
         }
 
+        body.canvas-white h1, body.canvas-parchment h1 {
+            background: none;
+            -webkit-text-fill-color: initial;
+            color: #0f172a;
+        }
+
         p.sub {
             color: var(--text-muted);
             font-size: 14px;
         }
 
-        /* Top Global Size Bar (Wide Viewport) */
+        /* Top Global Toolbar (Wide Viewport) */
         .global-bar {
             max-width: 1920px;
             margin: 0 auto 24px;
@@ -81,29 +120,43 @@
             align-items: center;
             justify-content: space-between;
             gap: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
         }
 
-        .size-selector {
+        .toolbar-section {
             display: flex;
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
         }
 
-        .size-btn {
+        .toolbar-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+
+        .size-btn, .canvas-btn {
             background: #1b263b;
             color: #cbd5e1;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 6px 14px;
+            padding: 6px 13px;
             border-radius: 8px;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.15s ease;
         }
 
-        .size-btn:hover,
-        .size-btn.active {
+        body.canvas-white .size-btn, body.canvas-white .canvas-btn {
+            background: #f1f5f9;
+            color: #334155;
+            border-color: #cbd5e1;
+        }
+
+        .size-btn:hover, .size-btn.active, .canvas-btn:hover, .canvas-btn.active {
             background: var(--gold);
             color: #0f172a;
             border-color: var(--gold);
@@ -114,8 +167,8 @@
             background: #022c22;
             color: #34d399;
             border: 1px solid #059669;
-            padding: 4px 12px;
-            border-radius: 6px;
+            padding: 5px 14px;
+            border-radius: 8px;
             font-size: 12px;
             font-weight: 600;
             display: flex;
@@ -154,7 +207,9 @@
             align-items: center;
             margin-bottom: 16px;
             border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 12px;
+            padding-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .panel-title {
@@ -165,15 +220,43 @@
             gap: 8px;
         }
 
+        .preset-buttons {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .preset-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+            border: 1px solid var(--border-subtle);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .preset-btn:hover {
+            background: rgba(250, 204, 21, 0.2);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
         .controls-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 12px;
-            margin-bottom: 20px;
-            background: #070b14;
+            margin-bottom: 18px;
+            background: rgba(7, 11, 20, 0.7);
             border: 1px solid var(--border-subtle);
             padding: 14px;
             border-radius: 14px;
+        }
+
+        body.canvas-white .controls-grid {
+            background: #f8fafc;
         }
 
         .control-group {
@@ -201,6 +284,12 @@
             cursor: pointer;
         }
 
+        body.canvas-white .control-group select {
+            background: #ffffff;
+            color: #0f172a;
+            border-color: #cbd5e1;
+        }
+
         .color-pick-wrap {
             display: flex;
             align-items: center;
@@ -208,8 +297,8 @@
         }
 
         .color-pick-wrap input[type="color"] {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             border: none;
             border-radius: 6px;
             cursor: pointer;
@@ -221,25 +310,46 @@
             display: flex;
             gap: 4px;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .pill {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             cursor: pointer;
             transition: transform 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #fff;
+            font-weight: bold;
         }
 
         .pill:hover {
-            transform: scale(1.25);
+            transform: scale(1.2);
+        }
+
+        .pill.none-pill {
+            background: repeating-linear-gradient(45deg, #ef4444, #ef4444 3px, #0f172a 3px, #0f172a 6px);
+            border-color: #ef4444;
+            color: #ffffff;
+            font-size: 11px;
+        }
+
+        .status-tag {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-family: monospace;
+            margin-top: 2px;
         }
 
         /* Dynamic Responsive Icon Grid with Zero Collision */
         .icon-display-grid {
             display: grid;
-            gap: 16px;
+            gap: 14px;
             justify-items: center;
             align-items: stretch;
             flex: 1;
@@ -250,18 +360,34 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: rgba(7, 11, 20, 0.6);
+            background: rgba(7, 11, 20, 0.5);
             border: 1px solid var(--border-subtle);
             border-radius: 14px;
             padding: 14px 10px;
             width: 100%;
             transition: all 0.2s ease;
+            position: relative;
+        }
+
+        /* Tile checkerboard underlay when transparent */
+        .tile-checkerboard {
+            background-image: linear-gradient(45deg, #1e293b 25%, transparent 25%),
+                              linear-gradient(-45deg, #1e293b 25%, transparent 25%),
+                              linear-gradient(45deg, transparent 75%, #1e293b 75%),
+                              linear-gradient(-45deg, transparent 75%, #1e293b 75%) !important;
+            background-size: 14px 14px !important;
+            background-position: 0 0, 0 7px, 7px -7px, -7px 0px !important;
+        }
+
+        body.canvas-white .icon-tile {
+            background: #ffffff;
+            border-color: #e2e8f0;
         }
 
         .icon-tile:hover {
             border-color: rgba(250, 204, 21, 0.4);
             transform: translateY(-2px);
-            background: rgba(15, 23, 42, 0.9);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         .icon-tile .name {
@@ -270,6 +396,19 @@
             color: var(--text-muted);
             margin-top: 10px;
             text-align: center;
+        }
+
+        .code-box {
+            background: #070b14;
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-top: 14px;
+            font-family: monospace;
+            font-size: 11px;
+            color: #a5b4fc;
+            overflow-x: auto;
+            white-space: nowrap;
         }
 
         /* Multi-Scale Matrix Section (Wide) */
@@ -281,28 +420,44 @@
             border-radius: 20px;
             padding: 26px 22px;
         }
+
+        .matrix-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="header">
-        <span class="tag">Vedic Astrology Design System</span>
-        <h1>12 Rāśi Multi-Scale & 3D Medallion Studio</h1>
-        <p class="sub">Compare 2 live settings • Tight-fitted large graphics • Customizable Rim/Border Contrast Line •
-            Auto Optical Sizing</p>
+        <span class="tag">Vedic Astrology Vector Studio</span>
+        <h1>12 Rāśi Multi-Scale & Medallion Studio</h1>
+        <p class="sub">Compare 2 live settings • Pure Solid Silhouettes (Zero Inside Details) • 100% Transparent Background & No-Border Options</p>
     </div>
 
-    <!-- Global Scale Control -->
+    <!-- Top Global Toolbar -->
     <div class="global-bar">
-        <div class="size-selector">
-            <span style="font-size: 13px; font-weight: 600; color: #cbd5e1;">Global Scale:</span>
+        <div class="toolbar-section">
+            <span class="toolbar-label">Global Scale:</span>
             <button class="size-btn" onclick="setGlobalSize(24)">24px</button>
             <button class="size-btn" onclick="setGlobalSize(36)">36px</button>
             <button class="size-btn" onclick="setGlobalSize(48)">48px</button>
             <button class="size-btn active" onclick="setGlobalSize(64)">64px</button>
             <button class="size-btn" onclick="setGlobalSize(96)">96px</button>
             <button class="size-btn" onclick="setGlobalSize(128)">128px</button>
+        </div>
+
+        <div class="toolbar-section">
+            <span class="toolbar-label">Canvas Mode:</span>
+            <button class="canvas-btn active" onclick="setCanvasMode('dark')">🌑 Dark</button>
+            <button class="canvas-btn" onclick="setCanvasMode('checkerboard')">🏁 Checkerboard</button>
+            <button class="canvas-btn" onclick="setCanvasMode('white')">⚪ Pure White</button>
+            <button class="canvas-btn" onclick="setCanvasMode('parchment')">📜 Parchment</button>
         </div>
 
         <div id="optical-status" class="optical-badge">
@@ -313,17 +468,19 @@
 
     <!-- Wide Dual Comparison Workbench -->
     <div class="workbench-grid">
-
+        
         <!-- Setting A (Left) -->
         <div class="panel" id="panel-a">
             <div class="panel-header">
                 <div class="panel-title" style="color: #facc15;">
                     <span>Setting A</span>
-                    <span style="font-size: 12px; color: var(--text-muted); font-weight: normal;">(Gold Medallion on
-                        Crimson)</span>
+                    <span id="label-a" style="font-size: 12px; color: var(--text-muted); font-weight: normal;">(Pure Transparent Silhouette)</span>
                 </div>
-                <button class="size-btn" onclick="presetA('gold_medallion')"
-                    style="padding: 3px 8px; font-size: 11px;">Preset: Sacred Gold</button>
+                <div class="preset-buttons">
+                    <button class="preset-btn" onclick="presetA('solid_transparent')">⚡ Solid on Transparent</button>
+                    <button class="preset-btn" onclick="presetA('detailed_transparent')">✦ Detailed on Transparent</button>
+                    <button class="preset-btn" onclick="presetA('gold_medallion')">🏆 Gold Medallion</button>
+                </div>
             </div>
 
             <div class="controls-grid">
@@ -332,83 +489,79 @@
                     <div class="color-pick-wrap">
                         <input type="color" id="fg-a" value="#facc15" onchange="updatePanelA()">
                         <div class="preset-pills">
-                            <div class="pill" style="background: #facc15;" onclick="setFgA('#facc15')" title="Gold">
-                            </div>
-                            <div class="pill" style="background: #ffffff;" onclick="setFgA('#ffffff')" title="White">
-                            </div>
-                            <div class="pill" style="background: #fb923c;" onclick="setFgA('#fb923c')"
-                                title="Terracotta"></div>
+                            <div class="pill" style="background: #facc15;" onclick="setFgA('#facc15')" title="Gold"></div>
+                            <div class="pill" style="background: #ffffff;" onclick="setFgA('#ffffff')" title="White"></div>
+                            <div class="pill" style="background: #38bdf8;" onclick="setFgA('#38bdf8')" title="Cyan"></div>
+                            <div class="pill" style="background: #fb923c;" onclick="setFgA('#fb923c')" title="Terracotta"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="control-group">
-                    <label>Background Color</label>
+                    <label>Background (BG)</label>
                     <div class="color-pick-wrap">
-                        <input type="color" id="bg-a" value="#781d1d" onchange="updatePanelA()">
+                        <input type="color" id="bg-a" value="#781d1d" onchange="enableBgA(this.value)">
                         <div class="preset-pills">
-                            <div class="pill" style="background: #781d1d;" onclick="setBgA('#781d1d')" title="Crimson">
-                            </div>
-                            <div class="pill" style="background: #451a03;" onclick="setBgA('#451a03')"
-                                title="Deep Bronze"></div>
-                            <div class="pill" style="background: #022c22;" onclick="setBgA('#022c22')" title="Emerald">
-                            </div>
-                            <div class="pill" style="background: transparent; border-color:#888;"
-                                onclick="setBgA('transparent')" title="Clear"></div>
+                            <div class="pill none-pill" onclick="setBgA('transparent')" title="Transparent (None)">✕</div>
+                            <div class="pill" style="background: #781d1d;" onclick="setBgA('#781d1d')" title="Crimson"></div>
+                            <div class="pill" style="background: #1e1b4b;" onclick="setBgA('#1e1b4b')" title="Deep Indigo"></div>
+                            <div class="pill" style="background: #022c22;" onclick="setBgA('#022c22')" title="Emerald"></div>
                         </div>
                     </div>
+                    <span id="bg-a-status" class="status-tag">transparent (none)</span>
                 </div>
 
                 <div class="control-group">
-                    <label>Outside Rim Color</label>
+                    <label>Outside Rim / Border</label>
                     <div class="color-pick-wrap">
-                        <input type="color" id="ring-a" value="#facc15" onchange="updatePanelA()">
+                        <input type="color" id="ring-a" value="#facc15" onchange="enableRingA(this.value)">
                         <div class="preset-pills">
-                            <div class="pill" style="background: #facc15;" onclick="setRingA('#facc15')"
-                                title="Gold Rim"></div>
-                            <div class="pill" style="background: #f43f5e;" onclick="setRingA('#f43f5e')"
-                                title="Rose Rim"></div>
-                            <div class="pill" style="background: #38bdf8;" onclick="setRingA('#38bdf8')"
-                                title="Cyan Rim"></div>
-                            <div class="pill" style="background: #ffffff;" onclick="setRingA('#ffffff')"
-                                title="White Rim"></div>
+                            <div class="pill none-pill" onclick="setRingA('none')" title="None (No Rim)">✕</div>
+                            <div class="pill" style="background: #facc15;" onclick="setRingA('#facc15')" title="Gold Rim"></div>
+                            <div class="pill" style="background: #f43f5e;" onclick="setRingA('#f43f5e')" title="Rose Rim"></div>
+                            <div class="pill" style="background: #38bdf8;" onclick="setRingA('#38bdf8')" title="Cyan Rim"></div>
                         </div>
                     </div>
+                    <span id="ring-a-status" class="status-tag">none (no rim)</span>
+                </div>
+
+                <div class="control-group">
+                    <label>Detail / Optical Cut</label>
+                    <select id="variant-a" onchange="updatePanelA()">
+                        <option value="compact" selected>⚡ Clean Micro-Cut (Simplified for Small Sizes &le;36px)</option>
+                        <option value="detailed">✦ Detailed Art (High-Resolution Engraving &ge;48px)</option>
+                        <option value="auto">⚙ Auto (&lt;48px Clean, &ge;48px Detailed)</option>
+                    </select>
                 </div>
 
                 <div class="control-group">
                     <label>3D Effect</label>
                     <select id="effect-a" onchange="updatePanelA()">
-                        <option value="medallion" selected>3D Gold Medallion</option>
+                        <option value="none" selected>Flat 2D (None)</option>
+                        <option value="medallion">3D Gold Medallion</option>
                         <option value="button">3D Raised Button</option>
                         <option value="glass">Glassmorphism</option>
                         <option value="emboss">Inset / Carved</option>
                         <option value="glow">Sacred Glow</option>
-                        <option value="none">Flat (None)</option>
                     </select>
                 </div>
 
                 <div class="control-group">
                     <label>Shape / Radius</label>
                     <select id="radius-a" onchange="updatePanelA()">
-                        <option value="50%" selected>Circle (50%)</option>
+                        <option value="0" selected>Square (0px)</option>
+                        <option value="50%">Circle (50%)</option>
                         <option value="16">Squircle (16px)</option>
                         <option value="8">Rounded (8px)</option>
-                        <option value="0">Square (0px)</option>
-                    </select>
-                </div>
-
-                <div class="control-group">
-                    <label>Optical Cut</label>
-                    <select id="variant-a" onchange="updatePanelA()">
-                        <option value="auto" selected>Auto (by size)</option>
-                        <option value="compact">Force Compact</option>
-                        <option value="detailed">Force Detailed</option>
                     </select>
                 </div>
             </div>
 
             <div class="icon-display-grid" id="grid-a"></div>
+
+            <div class="code-box" id="code-a">
+                &lt;astro-rashi icon="simha" size="64" color="#facc15" bg="none" ring="none" variant="compact"&gt;&lt;/astro-rashi&gt;
+            </div>
         </div>
 
         <!-- Setting B (Right) -->
@@ -416,106 +569,113 @@
             <div class="panel-header">
                 <div class="panel-title" style="color: #38bdf8;">
                     <span>Setting B</span>
-                    <span style="font-size: 12px; color: var(--text-muted); font-weight: normal;">(Cyber / Tactical 3D
-                        Button)</span>
+                    <span id="label-b" style="font-size: 12px; color: var(--text-muted); font-weight: normal;">(3D Gold Medallion on Crimson)</span>
                 </div>
-                <button class="size-btn" onclick="presetB('tactical_button')"
-                    style="padding: 3px 8px; font-size: 11px;">Preset: Cyan Slate</button>
+                <div class="preset-buttons">
+                    <button class="preset-btn" onclick="presetB('gold_medallion')">🏆 Gold Medallion</button>
+                    <button class="preset-btn" onclick="presetB('compact_transparent')">⚡ Clean Micro-Cut on Transparent</button>
+                    <button class="preset-btn" onclick="presetB('tactical_button')">🛡 Tactical 3D</button>
+                </div>
             </div>
 
             <div class="controls-grid">
                 <div class="control-group">
                     <label>Icon (FG) Color</label>
                     <div class="color-pick-wrap">
-                        <input type="color" id="fg-b" value="#ffffff" onchange="updatePanelB()">
+                        <input type="color" id="fg-b" value="#facc15" onchange="updatePanelB()">
                         <div class="preset-pills">
-                            <div class="pill" style="background: #ffffff;" onclick="setFgB('#ffffff')" title="White">
-                            </div>
-                            <div class="pill" style="background: #38bdf8;" onclick="setFgB('#38bdf8')" title="Cyan">
-                            </div>
-                            <div class="pill" style="background: #34d399;" onclick="setFgB('#34d399')" title="Mint">
-                            </div>
+                            <div class="pill" style="background: #facc15;" onclick="setFgB('#facc15')" title="Gold"></div>
+                            <div class="pill" style="background: #ffffff;" onclick="setFgB('#ffffff')" title="White"></div>
+                            <div class="pill" style="background: #38bdf8;" onclick="setFgB('#38bdf8')" title="Cyan"></div>
+                            <div class="pill" style="background: #34d399;" onclick="setFgB('#34d399')" title="Emerald"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="control-group">
-                    <label>Background Color</label>
+                    <label>Background (BG)</label>
                     <div class="color-pick-wrap">
-                        <input type="color" id="bg-b" value="#111827" onchange="updatePanelB()">
+                        <input type="color" id="bg-b" value="#781d1d" onchange="enableBgB(this.value)">
                         <div class="preset-pills">
-                            <div class="pill" style="background: #111827;" onclick="setBgB('#111827')" title="Obsidian">
-                            </div>
-                            <div class="pill" style="background: #1e3a8a;" onclick="setBgB('#1e3a8a')"
-                                title="Royal Navy"></div>
-                            <div class="pill" style="background: #0f766e;" onclick="setBgB('#0f766e')" title="Teal">
-                            </div>
-                            <div class="pill" style="background: transparent; border-color:#888;"
-                                onclick="setBgB('transparent')" title="Clear"></div>
+                            <div class="pill none-pill" onclick="setBgB('transparent')" title="Transparent (None)">✕</div>
+                            <div class="pill" style="background: #781d1d;" onclick="setBgB('#781d1d')" title="Crimson"></div>
+                            <div class="pill" style="background: #111827;" onclick="setBgB('#111827')" title="Obsidian"></div>
+                            <div class="pill" style="background: #1e3a8a;" onclick="setBgB('#1e3a8a')" title="Royal Navy"></div>
                         </div>
                     </div>
+                    <span id="bg-b-status" class="status-tag">#781d1d</span>
                 </div>
 
                 <div class="control-group">
-                    <label>Outside Rim Color</label>
+                    <label>Outside Rim / Border</label>
                     <div class="color-pick-wrap">
-                        <input type="color" id="ring-b" value="#38bdf8" onchange="updatePanelB()">
+                        <input type="color" id="ring-b" value="#facc15" onchange="enableRingB(this.value)">
                         <div class="preset-pills">
-                            <div class="pill" style="background: #38bdf8;" onclick="setRingB('#38bdf8')"
-                                title="Cyan Rim"></div>
-                            <div class="pill" style="background: #34d399;" onclick="setRingB('#34d399')"
-                                title="Emerald Rim"></div>
-                            <div class="pill" style="background: #a855f7;" onclick="setRingB('#a855f7')"
-                                title="Purple Rim"></div>
-                            <div class="pill" style="background: #ffffff;" onclick="setRingB('#ffffff')"
-                                title="White Rim"></div>
+                            <div class="pill none-pill" onclick="setRingB('none')" title="None (No Rim)">✕</div>
+                            <div class="pill" style="background: #facc15;" onclick="setRingB('#facc15')" title="Gold Rim"></div>
+                            <div class="pill" style="background: #f43f5e;" onclick="setRingB('#f43f5e')" title="Rose Rim"></div>
+                            <div class="pill" style="background: #34d399;" onclick="setRingB('#34d399')" title="Emerald Rim"></div>
                         </div>
                     </div>
+                    <span id="ring-b-status" class="status-tag">#facc15</span>
+                </div>
+
+                <div class="control-group">
+                    <label>Detail / Optical Cut</label>
+                    <select id="variant-b" onchange="updatePanelB()">
+                        <option value="detailed" selected>✦ Detailed Art (High-Resolution Engraving &ge;48px)</option>
+                        <option value="compact">⚡ Clean Micro-Cut (Simplified for Small Sizes &le;36px)</option>
+                        <option value="auto">⚙ Auto (&lt;48px Clean, &ge;48px Detailed)</option>
+                    </select>
                 </div>
 
                 <div class="control-group">
                     <label>3D Effect</label>
                     <select id="effect-b" onchange="updatePanelB()">
-                        <option value="button" selected>3D Raised Button</option>
-                        <option value="medallion">3D Gold Medallion</option>
+                        <option value="medallion" selected>3D Gold Medallion</option>
+                        <option value="none">Flat 2D (None)</option>
+                        <option value="button">3D Raised Button</option>
                         <option value="glass">Glassmorphism</option>
                         <option value="emboss">Inset / Carved</option>
                         <option value="glow">Sacred Glow</option>
-                        <option value="none">Flat (None)</option>
                     </select>
                 </div>
 
                 <div class="control-group">
                     <label>Shape / Radius</label>
                     <select id="radius-b" onchange="updatePanelB()">
-                        <option value="14" selected>Rounded (14px)</option>
-                        <option value="50%">Circle (50%)</option>
-                        <option value="22">Squircle (22px)</option>
+                        <option value="50%" selected>Circle (50%)</option>
+                        <option value="16">Squircle (16px)</option>
+                        <option value="8">Rounded (8px)</option>
                         <option value="0">Square (0px)</option>
-                    </select>
-                </div>
-
-                <div class="control-group">
-                    <label>Optical Cut</label>
-                    <select id="variant-b" onchange="updatePanelB()">
-                        <option value="auto" selected>Auto (by size)</option>
-                        <option value="compact">Force Compact</option>
-                        <option value="detailed">Force Detailed</option>
                     </select>
                 </div>
             </div>
 
             <div class="icon-display-grid" id="grid-b"></div>
+
+            <div class="code-box" id="code-b">
+                &lt;astro-rashi icon="simha" size="64" color="#facc15" bg="#781d1d" ring="#facc15" effect="medallion" radius="50%"&gt;&lt;/astro-rashi&gt;
+            </div>
         </div>
 
     </div>
 
     <!-- Multi-Scale Verification Matrix -->
     <div class="matrix-section">
-        <h2 style="font-size: 20px; margin-bottom: 6px; color: var(--gold);">Multi-Scale Size Verification Matrix</h2>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 24px;">Examine how optical sizing
-            automatically switches to simplified micro-cuts at $\le$36px for 100% legibility.</p>
-
+        <div class="matrix-toolbar">
+            <div>
+                <h2 style="font-size: 20px; margin-bottom: 4px; color: var(--gold);">Multi-Scale Size Verification Matrix</h2>
+                <p style="font-size: 13px; color: var(--text-muted);">Compare how Pure Solid Silhouettes (zero inside detail) vs Detailed Medallions render at all UI sizes (128px down to 24px).</p>
+            </div>
+            <div class="toolbar-section">
+                <span class="toolbar-label">Matrix Style:</span>
+                <button class="size-btn active" id="btn-matrix-solid" onclick="setMatrixStyle('solid')">⚡ Solid Silhouettes (Transparent BG)</button>
+                <button class="size-btn" id="btn-matrix-medallion" onclick="setMatrixStyle('medallion')">🏆 3D Gold Medallions</button>
+                <button class="size-btn" id="btn-matrix-auto" onclick="setMatrixStyle('auto')">⚙ Optical Auto</button>
+            </div>
+        </div>
+        
         <div id="matrix-container"></div>
     </div>
 
@@ -538,6 +698,27 @@
         ];
 
         let currentGlobalSize = 64;
+        let matrixStyle = "solid"; // "solid" | "medallion" | "auto"
+
+        // Setting A: Pure Solid Silhouette on Transparent
+        let stateA = {
+            fg: "#facc15",
+            bg: "transparent",
+            ring: "none",
+            effect: "none",
+            radius: "0",
+            variant: "solid"
+        };
+
+        // Setting B: 3D Gold Medallion on Crimson
+        let stateB = {
+            fg: "#facc15",
+            bg: "#781d1d",
+            ring: "#facc15",
+            effect: "medallion",
+            radius: "50%",
+            variant: "detailed"
+        };
 
         function getGridCols(sz) {
             if (sz >= 128) return "repeat(auto-fill, minmax(145px, 1fr))";
@@ -545,6 +726,13 @@
             if (sz >= 64) return "repeat(auto-fill, minmax(90px, 1fr))";
             if (sz >= 48) return "repeat(auto-fill, minmax(75px, 1fr))";
             return "repeat(auto-fill, minmax(65px, 1fr))";
+        }
+
+        function setCanvasMode(mode) {
+            document.body.className = mode === 'dark' ? '' : `canvas-${mode}`;
+            document.querySelectorAll(".canvas-btn").forEach(b => {
+                b.classList.toggle("active", b.textContent.toLowerCase().includes(mode));
+            });
         }
 
         function setGlobalSize(sz) {
@@ -556,7 +744,7 @@
             const status = document.getElementById("optical-text");
             const badge = document.getElementById("optical-status");
             if (sz < 48) {
-                status.textContent = `Compact Micro-Cut Active (Scale = ${sz}px < 48px)`;
+                status.textContent = `Solid Silhouette Active (Scale = ${sz}px < 48px)`;
                 badge.style.background = "#1e1b4b";
                 badge.style.color = "#a5b4fc";
                 badge.style.borderColor = "#6366f1";
@@ -575,12 +763,14 @@
         }
 
         function updatePanelA() {
-            const fg = document.getElementById("fg-a").value;
-            const bg = document.getElementById("bg-a").value;
-            const ring = document.getElementById("ring-a").value;
-            const effect = document.getElementById("effect-a").value;
-            const radius = document.getElementById("radius-a").value;
-            const variant = document.getElementById("variant-a").value;
+            stateA.fg = document.getElementById("fg-a").value;
+            stateA.effect = document.getElementById("effect-a").value;
+            stateA.radius = document.getElementById("radius-a").value;
+            stateA.variant = document.getElementById("variant-a").value;
+
+            const isTrans = stateA.bg === "transparent" || stateA.bg === "none";
+            document.getElementById("bg-a-status").textContent = isTrans ? "transparent (none)" : stateA.bg;
+            document.getElementById("ring-a-status").textContent = stateA.ring === "none" ? "none (no rim)" : stateA.ring;
 
             const grid = document.getElementById("grid-a");
             grid.style.gridTemplateColumns = getGridCols(currentGlobalSize);
@@ -588,31 +778,37 @@
 
             rashis.forEach(r => {
                 const tile = document.createElement("div");
-                tile.className = "icon-tile";
+                tile.className = "icon-tile" + (isTrans ? " tile-checkerboard" : "");
                 tile.innerHTML = `
                     <astro-rashi 
                         icon="${r.id}" 
                         size="${currentGlobalSize}" 
-                        color="${fg}" 
-                        bg="${bg}" 
-                        ring="${ring}"
-                        effect="${effect}" 
-                        radius="${radius}" 
-                        variant="${variant}">
+                        color="${stateA.fg}" 
+                        bg="${stateA.bg}" 
+                        ring="${stateA.ring}"
+                        effect="${stateA.effect}" 
+                        radius="${stateA.radius}" 
+                        variant="${stateA.variant}">
                     </astro-rashi>
                     <div class="name">${r.name}</div>
                 `;
                 grid.appendChild(tile);
             });
+
+            // Update code snippet
+            const codeEl = document.getElementById("code-a");
+            codeEl.textContent = `<astro-rashi icon="simha" size="${currentGlobalSize}" color="${stateA.fg}" bg="${stateA.bg}" ring="${stateA.ring}" effect="${stateA.effect}" radius="${stateA.radius}" variant="${stateA.variant}"></astro-rashi>`;
         }
 
         function updatePanelB() {
-            const fg = document.getElementById("fg-b").value;
-            const bg = document.getElementById("bg-b").value;
-            const ring = document.getElementById("ring-b").value;
-            const effect = document.getElementById("effect-b").value;
-            const radius = document.getElementById("radius-b").value;
-            const variant = document.getElementById("variant-b").value;
+            stateB.fg = document.getElementById("fg-b").value;
+            stateB.effect = document.getElementById("effect-b").value;
+            stateB.radius = document.getElementById("radius-b").value;
+            stateB.variant = document.getElementById("variant-b").value;
+
+            const isTrans = stateB.bg === "transparent" || stateB.bg === "none";
+            document.getElementById("bg-b-status").textContent = isTrans ? "transparent (none)" : stateB.bg;
+            document.getElementById("ring-b-status").textContent = stateB.ring === "none" ? "none (no rim)" : stateB.ring;
 
             const grid = document.getElementById("grid-b");
             grid.style.gridTemplateColumns = getGridCols(currentGlobalSize);
@@ -620,80 +816,175 @@
 
             rashis.forEach(r => {
                 const tile = document.createElement("div");
-                tile.className = "icon-tile";
+                tile.className = "icon-tile" + (isTrans ? " tile-checkerboard" : "");
                 tile.innerHTML = `
                     <astro-rashi 
                         icon="${r.id}" 
                         size="${currentGlobalSize}" 
-                        color="${fg}" 
-                        bg="${bg}" 
-                        ring="${ring}"
-                        effect="${effect}" 
-                        radius="${radius}" 
-                        variant="${variant}">
+                        color="${stateB.fg}" 
+                        bg="${stateB.bg}" 
+                        ring="${stateB.ring}" 
+                        effect="${stateB.effect}" 
+                        radius="${stateB.radius}" 
+                        variant="${stateB.variant}">
                     </astro-rashi>
                     <div class="name">${r.name}</div>
                 `;
                 grid.appendChild(tile);
             });
+
+            // Update code snippet
+            const codeEl = document.getElementById("code-b");
+            codeEl.textContent = `<astro-rashi icon="simha" size="${currentGlobalSize}" color="${stateB.fg}" bg="${stateB.bg}" ring="${stateB.ring}" effect="${stateB.effect}" radius="${stateB.radius}" variant="${stateB.variant}"></astro-rashi>`;
         }
 
         function setFgA(c) { document.getElementById("fg-a").value = c; updatePanelA(); }
-        function setBgA(c) { document.getElementById("bg-a").value = c; updatePanelA(); }
-        function setRingA(c) { document.getElementById("ring-a").value = c; updatePanelA(); }
+        function setBgA(c) { stateA.bg = c; if(c !== 'transparent') document.getElementById("bg-a").value = c; updatePanelA(); }
+        function enableBgA(c) { stateA.bg = c; updatePanelA(); }
+        function setRingA(c) { stateA.ring = c; if(c !== 'none') document.getElementById("ring-a").value = c; updatePanelA(); }
+        function enableRingA(c) { stateA.ring = c; updatePanelA(); }
 
         function setFgB(c) { document.getElementById("fg-b").value = c; updatePanelB(); }
-        function setBgB(c) { document.getElementById("bg-b").value = c; updatePanelB(); }
-        function setRingB(c) { document.getElementById("ring-b").value = c; updatePanelB(); }
+        function setBgB(c) { stateB.bg = c; if(c !== 'transparent') document.getElementById("bg-b").value = c; updatePanelB(); }
+        function enableBgB(c) { stateB.bg = c; updatePanelB(); }
+        function setRingB(c) { stateB.ring = c; if(c !== 'none') document.getElementById("ring-b").value = c; updatePanelB(); }
+        function enableRingB(c) { stateB.ring = c; updatePanelB(); }
 
         function presetA(type) {
-            if (type === 'gold_medallion') {
+            if (type === 'compact_transparent' || type === 'solid_transparent') {
+                setFgA("#facc15");
+                setBgA("transparent");
+                setRingA("none");
+                document.getElementById("variant-a").value = "compact";
+                document.getElementById("effect-a").value = "none";
+                document.getElementById("radius-a").value = "0";
+                document.getElementById("label-a").textContent = "(Clean Micro-Cut on Transparent)";
+                updatePanelA();
+            } else if (type === 'detailed_transparent') {
+                setFgA("#facc15");
+                setBgA("transparent");
+                setRingA("none");
+                document.getElementById("variant-a").value = "detailed";
+                document.getElementById("effect-a").value = "none";
+                document.getElementById("radius-a").value = "0";
+                document.getElementById("label-a").textContent = "(Detailed Art on Transparent)";
+                updatePanelA();
+            } else if (type === 'gold_medallion') {
                 setFgA("#facc15");
                 setBgA("#781d1d");
                 setRingA("#facc15");
+                document.getElementById("variant-a").value = "auto";
                 document.getElementById("effect-a").value = "medallion";
                 document.getElementById("radius-a").value = "50%";
+                document.getElementById("label-a").textContent = "(Gold Medallion on Crimson)";
                 updatePanelA();
             }
         }
 
         function presetB(type) {
-            if (type === 'tactical_button') {
+            if (type === 'compact_transparent' || type === 'solid_transparent') {
+                setFgB("#38bdf8");
+                setBgB("transparent");
+                setRingB("none");
+                document.getElementById("variant-b").value = "compact";
+                document.getElementById("effect-b").value = "none";
+                document.getElementById("radius-b").value = "0";
+                document.getElementById("label-b").textContent = "(Clean Micro-Cut on Transparent)";
+                updatePanelB();
+            } else if (type === 'gold_medallion') {
+                setFgB("#facc15");
+                setBgB("#781d1d");
+                setRingB("#facc15");
+                document.getElementById("variant-b").value = "detailed";
+                document.getElementById("effect-b").value = "medallion";
+                document.getElementById("radius-b").value = "50%";
+                document.getElementById("label-b").textContent = "(Gold Medallion on Crimson)";
+                updatePanelB();
+            } else if (type === 'tactical_button') {
                 setFgB("#ffffff");
                 setBgB("#111827");
                 setRingB("#38bdf8");
+                document.getElementById("variant-b").value = "auto";
                 document.getElementById("effect-b").value = "button";
                 document.getElementById("radius-b").value = "14";
+                document.getElementById("label-b").textContent = "(Tactical 3D Button)";
                 updatePanelB();
             }
+        }
+
+        function setMatrixStyle(style) {
+            matrixStyle = style;
+            document.getElementById("btn-matrix-solid").classList.toggle("active", style === "compact" || style === "solid");
+            document.getElementById("btn-matrix-medallion").classList.toggle("active", style === "medallion");
+            document.getElementById("btn-matrix-auto").classList.toggle("active", style === "auto");
+            renderMatrix();
         }
 
         function renderMatrix() {
             const container = document.getElementById("matrix-container");
             container.innerHTML = "";
 
-            const matrixSizes = [128, 64, 48, 36, 24];
+            const matrixSizes = [128, 96, 64, 48, 36, 24];
 
             matrixSizes.forEach(sz => {
                 const row = document.createElement("div");
                 row.style.marginBottom = "20px";
-                row.style.background = "#070b14";
-                row.style.border = "1px solid rgba(255,255,255,0.06)";
+                row.style.background = "rgba(7, 11, 20, 0.6)";
+                row.style.border = "1px solid rgba(255,255,255,0.08)";
                 row.style.borderRadius = "14px";
                 row.style.padding = "16px";
 
-                const isComp = sz < 48;
+                let varAttr = matrixStyle;
+                let bgAttr = "transparent";
+                let ringAttr = "none";
+                let effectAttr = "none";
+                let radAttr = "0";
+                let modeDesc = "";
+
+                if (matrixStyle === "compact" || matrixStyle === "solid") {
+                    varAttr = "compact";
+                    bgAttr = "transparent";
+                    ringAttr = "none";
+                    effectAttr = "none";
+                    radAttr = "0";
+                    modeDesc = "⚡ Clean Micro-Cut (Simplified Lines, Transparent BG)";
+                } else if (matrixStyle === "medallion") {
+                    varAttr = "detailed";
+                    bgAttr = "#781d1d";
+                    ringAttr = "#facc15";
+                    effectAttr = "medallion";
+                    radAttr = "50%";
+                    modeDesc = "🏆 3D Gold Medallion on Crimson";
+                } else {
+                    varAttr = "auto";
+                    const isComp = sz < 48;
+                    bgAttr = "#781d1d";
+                    ringAttr = "#facc15";
+                    effectAttr = "medallion";
+                    radAttr = "50%";
+                    modeDesc = isComp ? "⚡ Auto: Clean Micro-Cut (&lt;48px)" : "✦ Auto: Detailed Cut (&ge;48px)";
+                }
+
                 row.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
                         <span style="font-weight: 700; font-size: 15px; color: #f1f5f9;">Display Size: ${sz}px</span>
-                        <span style="font-size: 12px; color: ${isComp ? '#a5b4fc' : '#34d399'}; font-weight: 600;">
-                            ${isComp ? '⚡ Auto: Ultra-Compact Micro-Cut' : '✦ Auto: Detailed Cut'}
+                        <span style="font-size: 12px; color: ${matrixStyle === 'solid' ? '#facc15' : '#34d399'}; font-weight: 600;">
+                            ${modeDesc}
                         </span>
                     </div>
                     <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center;">
                         ${rashis.map(r => `
-                            <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
-                                <astro-rashi icon="${r.id}" size="${sz}" color="#facc15" bg="#781d1d" ring="#facc15" effect="medallion" radius="50%"></astro-rashi>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px; border-radius: 8px; ${bgAttr === 'transparent' ? 'background: rgba(255,255,255,0.03);' : ''}">
+                                <astro-rashi 
+                                    icon="${r.id}" 
+                                    size="${sz}" 
+                                    color="#facc15" 
+                                    bg="${bgAttr}" 
+                                    ring="${ringAttr}" 
+                                    effect="${effectAttr}" 
+                                    radius="${radAttr}" 
+                                    variant="${varAttr}">
+                                </astro-rashi>
                                 <span style="font-size: 10px; color: #94a3b8;">${r.name}</span>
                             </div>
                         `).join('')}
@@ -704,14 +995,20 @@
         }
 
         window.setGlobalSize = setGlobalSize;
+        window.setCanvasMode = setCanvasMode;
+        window.setMatrixStyle = setMatrixStyle;
         window.updatePanelA = updatePanelA;
         window.updatePanelB = updatePanelB;
         window.setFgA = setFgA;
         window.setBgA = setBgA;
+        window.enableBgA = enableBgA;
         window.setRingA = setRingA;
+        window.enableRingA = enableRingA;
         window.setFgB = setFgB;
         window.setBgB = setBgB;
+        window.enableBgB = enableBgB;
         window.setRingB = setRingB;
+        window.enableRingB = enableRingB;
         window.presetA = presetA;
         window.presetB = presetB;
 
