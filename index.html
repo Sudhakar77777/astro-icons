@@ -4,99 +4,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astro Icons</title>
+    <title>Astro Icons — 12 Rāśi Multi-Scale Showcase</title>
 
     <style>
+        :root {
+            --bg-primary: #090d16;
+            --bg-card: #131b2b;
+            --border-card: #223049;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --gold-primary: #facc15;
+            --rashi-color: #facc15;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: sans-serif;
-            padding: 40px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 40px 24px 80px;
+            min-height: 100vh;
         }
 
-        .grid {
+        .header {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 48px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(250, 204, 21, 0.12);
+            color: var(--gold-primary);
+            border: 1px solid rgba(250, 204, 21, 0.3);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        p.subtitle {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .theme-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .theme-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+        }
+
+        .theme-btn:hover, .theme-btn.active {
+            transform: scale(1.15);
+            border-color: #ffffff;
+        }
+
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto 56px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 28px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-card);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .size-tag {
+            background: #1e293b;
+            color: var(--gold-primary);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-family: monospace;
+            font-weight: 700;
+        }
+
+        /* Responsive Grids */
+        .icon-grid {
             display: grid;
-            grid-template-columns: repeat(4, 120px);
-            gap: 32px;
+            gap: 16px;
+            justify-items: center;
+            align-items: center;
         }
 
-        .grid div {
+        .grid-128 {
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 24px;
+        }
+
+        .grid-64 {
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-48 {
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 16px;
+        }
+
+        .grid-36 {
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 12px;
+        }
+
+        .grid-24 {
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            gap: 10px;
+        }
+
+        .icon-card {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
-            color: #7c2d12;
+            justify-content: center;
+            padding: 12px 8px;
+            border-radius: 12px;
+            background: rgba(11, 17, 32, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+
+        .icon-card:hover {
+            background: rgba(250, 204, 21, 0.08);
+            border-color: rgba(250, 204, 21, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .icon-card span {
+            margin-top: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .grid-36 .icon-card span,
+        .grid-24 .icon-card span {
+            font-size: 10px;
+            margin-top: 4px;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Rashi Icons</h1>
-
-    <div class="grid">
-
-        <div>
-            <astro-rashi icon="mesha" size="64"></astro-rashi>
-            <span>Mesha</span>
+    <div class="header">
+        <span class="badge">Vedic Astrology Design System</span>
+        <h1>12 Rāśi Multi-Scale Icon Suite</h1>
+        <p class="subtitle">Pure SVG vector architecture • Monochromatic currentColor • Verified at 128px, 64px, 48px, 36px, and 24px</p>
+        
+        <div class="theme-bar">
+            <span style="font-size: 13px; color: var(--text-secondary); margin-right: 6px;">Palette:</span>
+            <button class="theme-btn active" style="background: #facc15;" onclick="setColor('#facc15')" title="Gold / Surya"></button>
+            <button class="theme-btn" style="background: #fb923c;" onclick="setColor('#fb923c')" title="Terracotta / Mars"></button>
+            <button class="theme-btn" style="background: #ef4444;" onclick="setColor('#ef4444')" title="Crimson / Agni"></button>
+            <button class="theme-btn" style="background: #38bdf8;" onclick="setColor('#38bdf8')" title="Cyan / Chandra"></button>
+            <button class="theme-btn" style="background: #34d399;" onclick="setColor('#34d399')" title="Emerald / Budha"></button>
+            <button class="theme-btn" style="background: #ffffff;" onclick="setColor('#ffffff')" title="Pure White"></button>
         </div>
+    </div>
 
-        <div>
-            <astro-rashi icon="rishabha" size="64"></astro-rashi>
-            <span>Rishabha</span>
+    <!-- 128px Size Box -->
+    <div class="section-container">
+        <div class="section-header">
+            <div class="section-title">Large Display Size <span class="size-tag">128px</span></div>
+            <span style="font-size: 13px; color: var(--text-secondary);">Hero emblems & detail viewing</span>
         </div>
+        <div class="icon-grid grid-128" id="grid-128"></div>
+    </div>
 
-        <div>
-            <astro-rashi icon="mithuna" size="64"></astro-rashi>
-            <span>Mithuna</span>
+    <!-- 64px Size Box -->
+    <div class="section-container">
+        <div class="section-header">
+            <div class="section-title">Standard Chart Size <span class="size-tag">64px</span></div>
+            <span style="font-size: 13px; color: var(--text-secondary);">Kundali & birth chart cells</span>
         </div>
+        <div class="icon-grid grid-64" id="grid-64"></div>
+    </div>
 
-        <div>
-            <astro-rashi icon="kataka" size="64"></astro-rashi>
-            <span>Kataka</span>
+    <!-- 48px Size Box -->
+    <div class="section-container">
+        <div class="section-header">
+            <div class="section-title">Medium UI Size <span class="size-tag">48px</span></div>
+            <span style="font-size: 13px; color: var(--text-secondary);">Dashboard cards & summaries</span>
         </div>
+        <div class="icon-grid grid-48" id="grid-48"></div>
+    </div>
 
-        <div>
-            <astro-rashi icon="simha" size="64"></astro-rashi>
-            <span>Simha</span>
+    <!-- 36px Size Box -->
+    <div class="section-container">
+        <div class="section-header">
+            <div class="section-title">Compact Size <span class="size-tag">36px</span></div>
+            <span style="font-size: 13px; color: var(--text-secondary);">Transit lists & sidebars</span>
         </div>
+        <div class="icon-grid grid-36" id="grid-36"></div>
+    </div>
 
-        <div>
-            <astro-rashi icon="kanya" size="64"></astro-rashi>
-            <span>Kanya</span>
+    <!-- 24px Size Box -->
+    <div class="section-container">
+        <div class="section-header">
+            <div class="section-title">Micro UI Size <span class="size-tag">24px</span></div>
+            <span style="font-size: 13px; color: var(--text-secondary);">Buttons, tables & inline badges</span>
         </div>
-
-        <div>
-            <astro-rashi icon="thula" size="64"></astro-rashi>
-            <span>Thula</span>
-        </div>
-
-        <div>
-            <astro-rashi icon="vrischika" size="64"></astro-rashi>
-            <span>Vrischika</span>
-        </div>
-
-        <div>
-            <astro-rashi icon="dhanus" size="64"></astro-rashi>
-            <span>Dhanus</span>
-        </div>
-
-        <div>
-            <astro-rashi icon="makara" size="64"></astro-rashi>
-            <span>Makara</span>
-        </div>
-
-        <div>
-            <astro-rashi icon="kumbha" size="64"></astro-rashi>
-            <span>Kumbha</span>
-        </div>
-
-        <div>
-            <astro-rashi icon="meena" size="64"></astro-rashi>
-            <span>Meena</span>
-        </div>
-
+        <div class="icon-grid grid-24" id="grid-24"></div>
     </div>
 
     <script type="module" src="/src/components/rashi.js"></script>
+    <script>
+        const rashis = [
+            { id: "mesha", name: "Mesha (மேஷம்)" },
+            { id: "rishabha", name: "Rishabha (ரிஷபம்)" },
+            { id: "mithuna", name: "Mithuna (மிதுனம்)" },
+            { id: "kataka", name: "Kataka (கடகம்)" },
+            { id: "simha", name: "Simha (சிம்மம்)" },
+            { id: "kanya", name: "Kanya (கன்னி)" },
+            { id: "thula", name: "Thula (துலாம்)" },
+            { id: "vrischika", name: "Vrischika (விருச்சிகம்)" },
+            { id: "dhanus", name: "Dhanus (தனுசு)" },
+            { id: "makara", name: "Makara (மகரம்)" },
+            { id: "kumbha", name: "Kumbha (கும்பம்)" },
+            { id: "meena", name: "Meena (மீனம்)" }
+        ];
+
+        const sizes = [128, 64, 48, 36, 24];
+
+        sizes.forEach(size => {
+            const container = document.getElementById(`grid-${size}`);
+            rashis.forEach(r => {
+                const card = document.createElement("div");
+                card.className = "icon-card";
+                card.innerHTML = `
+                    <astro-rashi icon="${r.id}" size="${size}"></astro-rashi>
+                    <span>${r.name.split(" ")[0]}</span>
+                `;
+                container.appendChild(card);
+            });
+        });
+
+        function setColor(hex) {
+            document.documentElement.style.setProperty("--rashi-color", hex);
+            document.querySelectorAll("astro-rashi").forEach(el => el.setAttribute("color", hex));
+            document.querySelectorAll(".theme-btn").forEach(btn => {
+                btn.classList.toggle("active", btn.style.background === hex || btn.getAttribute("onclick").includes(hex));
+            });
+        }
+        window.setColor = setColor;
+    </script>
 
 </body>
 
