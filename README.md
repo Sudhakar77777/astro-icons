@@ -1,36 +1,36 @@
-# @astro/icons
+# @arivedha/astro-icons
 
-[![npm version](https://img.shields.io/badge/npm-v0.1.0-blue.svg)](https://www.npmjs.com/package/@astro/icons)
+[![npm version](https://img.shields.io/npm/v/@arivedha/astro-icons.svg?color=blue)](https://www.npmjs.com/package/@arivedha/astro-icons)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-success.svg)](#)
 [![Bundle Size](https://img.shields.io/badge/bundle-zero--runtime--deps-emerald.svg)](#)
 
 A gold-standard vector SVG iconography package for **Indian & Vedic Astrology** (12 Rāśi / Zodiac Signs).
 
-Engineered for temple-grade authenticity and publication-level media aesthetics (inspired by traditional Tamil Rasipalan & Dinamalar gold medallions). Built as a lightweight, zero-runtime-dependency Web Component library with first-class support for **Vanilla HTML**, **Astro**, **React**, **Vue**, and **Svelte**.
+Engineered for temple-grade authenticity and publication-level media aesthetics (inspired by traditional Tamil Rasipalan & Dinamalar gold medallions). Built as a lightweight, **zero-runtime-dependency** Web Component library with first-class support for **Vanilla HTML**, **Astro**, **React**, **Next.js**, **Vue**, and **Svelte**.
 
 ---
 
 ## ✨ Features
 
 - **🏛 Authentic Temple-Grade Iconography**: Gold-standard traditional Vedic artwork without cartoonish faces or exaggerated expressions.
-- **⚡ Zero Runtime Dependencies**: Pure, vanilla Web Component architecture (`<astro-rashi>`) that runs natively in every modern browser.
+- **⚡ Zero Runtime Dependencies**: Pure, vanilla Web Component architecture (`<astro-rashi>`) that runs natively in every modern browser (`dependencies: {}`).
 - **🎨 100% `currentColor` Theming**: Vector paths inherit text color automatically, or can be customized to any hex/RGB color.
 - **🔍 Dual Optical Sizing**:
   - **`detailed` ($\ge 48\text{px}$)**: High-resolution temple engraving with fine details and rich textures.
   - **`compact` ($< 48\text{px}$)**: Cleaned micro-cuts with hairline noise filtered out for sharp $24\text{px}$ and $36\text{px}$ legibility.
   - **`auto`**: Seamlessly switches between detailed and compact variants based on the `size` attribute.
-- **🛡 Circular Safe-Zone Guaranteed**: All 12 icons are calibrated inside 740–780px circular safe zones so they **never collide with or intersect the rim** when `radius="50%"`.
+- **🛡 Circular Safe-Zone Guaranteed**: All 12 icons are calibrated inside circular safe zones so they **never collide with or intersect the rim** when `radius="50%"`.
 - **🏆 3D Stamped Medallion & Lighting**: Built-in 3D Gold Medallion, Raised Tactical Button, Glassmorphism, Inset Carved, and Sacred Glow presets.
 - **🏁 100% Transparent Background Support**: Setting `bg="none"` or `bg="transparent"` yields true alpha transparency with zero background boxes, zero padding, and zero circular smudges.
-- **⚛️ Universal Framework Support**: Works natively in HTML, Astro, React, Next.js, Vite, Vue, and Svelte.
+- **⚛️ Universal Framework Support**: Works natively across HTML, Astro, React 19+, Next.js, Vite, Vue, and Svelte.
 
 ---
 
 ## 📦 Installation
 
 ```bash
-npm install @astro/icons
+npm install @arivedha/astro-icons
 ```
 
 Or clone the repository directly:
@@ -48,7 +48,7 @@ git clone https://github.com/Sudhakar77777/astro-icons.git
 Import the component once in your application entry or HTML `<head>`:
 
 ```html
-<script type="module" src="node_modules/@astro/icons/dist/index.js"></script>
+<script type="module" src="node_modules/@arivedha/astro-icons/dist/index.js"></script>
 
 <!-- 1. Pure Flat Vector on Transparent Background (No Rim, No Background) -->
 <astro-rashi icon="simha" size="48" color="#facc15" bg="none" ring="none"></astro-rashi>
@@ -67,11 +67,11 @@ Import the component once in your application entry or HTML `<head>`:
 
 ### 2. Astro Framework (`.astro`)
 
-Import `@astro/icons` in your Astro component frontmatter:
+Import `@arivedha/astro-icons` in your Astro component frontmatter:
 
 ```astro
 ---
-import "@astro/icons";
+import "@arivedha/astro-icons";
 ---
 
 <div class="zodiac-grid">
@@ -90,28 +90,27 @@ import "@astro/icons";
 
 ### 3. React / Next.js (`.jsx` / `.tsx`)
 
-Use the `<Rashi />` React component wrapper:
+Import the library once (in your root layout or component), then use standard `<astro-rashi>` elements:
 
-```jsx
-import React from 'react';
-import { Rashi } from '@astro/icons/react';
+```tsx
+import "@arivedha/astro-icons";
 
 export function HoroscopeCard() {
   return (
     <div className="card">
       {/* Flat Transparent Icon */}
-      <Rashi 
+      <astro-rashi 
         icon="simha" 
-        size={36} 
+        size="36" 
         color="#facc15" 
         bg="none" 
         ring="none" 
       />
 
       {/* 3D Gold Medallion */}
-      <Rashi 
+      <astro-rashi 
         icon="kanya" 
-        size={64} 
+        size="64" 
         color="#facc15" 
         bg="#781d1d" 
         ring="#facc15" 
@@ -123,7 +122,24 @@ export function HoroscopeCard() {
 }
 ```
 
-*Note: You can also use `<astro-rashi>` directly in React 19+ and Next.js App Router.*
+> **Note for TypeScript in React**: You can declare the custom element in your `global.d.ts`:
+> ```ts
+> declare namespace JSX {
+>   interface IntrinsicElements {
+>     'astro-rashi': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+>       icon: string;
+>       size?: number | string;
+>       color?: string;
+>       bg?: string;
+>       ring?: string;
+>       effect?: string;
+>       radius?: string;
+>       variant?: string;
+>       padding?: string;
+>     };
+>   }
+> }
+> ```
 
 ---
 
@@ -131,11 +147,11 @@ export function HoroscopeCard() {
 
 All 12 icons are available as standalone SVGs in both Detailed and Clean Compact variants:
 
-- **Detailed SVGs**: `@astro/icons/rashi/[icon].svg`
-- **Clean Compact SVGs**: `@astro/icons/rashi/compact/[icon].svg`
+- **Detailed SVGs**: `@arivedha/astro-icons/rashi/[icon].svg`
+- **Clean Compact SVGs**: `@arivedha/astro-icons/rashi/compact/[icon].svg`
 
 ```jsx
-import SimhaSvg from '@astro/icons/rashi/simha.svg';
+import SimhaSvg from '@arivedha/astro-icons/rashi/simha.svg';
 
 <img src={SimhaSvg} width="64" height="64" alt="Simha Rāśi" />
 ```
@@ -161,20 +177,20 @@ import SimhaSvg from '@astro/icons/rashi/simha.svg';
 
 ---
 
-## ⚙️ Attributes & Props Reference
+## ⚙️ Attributes Reference
 
-| Attribute (HTML) | Prop (React) | Type | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `icon` | `icon` | `string` | **(Required)** | One of the 12 Rāśi IDs (e.g. `simha`, `kanya`, `mesha`) |
-| `size` | `size` | `number \| string` | `24` | Width & height in pixels (e.g. `24`, `36`, `48`, `64`, `128`) |
-| `color` | `color` | `string` | `"currentColor"` | Foreground color of the icon path (e.g. `#facc15`, `white`) |
-| `bg` | `bg` | `string` | `"transparent"` | Background color. Use `"none"` or `"transparent"` for alpha transparency. |
-| `ring` | `ring` | `string` | `"none"` | Outer border/rim contrast color. Use `"none"` to remove the border completely. |
-| `effect` | `effect` | `string` | `"none"` | 3D lighting effect: `"none"`, `"medallion"`, `"button"`, `"glass"`, `"emboss"`, `"glow"` |
-| `radius` | `radius` | `string` | `"0"` | Border radius: `"50%"`, `"circle"`, `"16"`, `"8"`, `"0"` |
-| `variant` | `variant` | `string` | `"auto"` | Optical cut: `"auto"` ($<48\text{px}$ compact, $\ge 48\text{px}$ detailed), `"compact"`, `"detailed"` |
-| `padding` | `padding` | `string` | `auto` | Inner padding. Defaults to `0px` when background is transparent. |
-| `border` | `border` | `string` | `auto` | Custom CSS border override (e.g. `2px dashed gold`) |
+| Attribute | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `icon` | `string` | **(Required)** | One of the 12 Rāśi IDs (e.g. `simha`, `kanya`, `mesha`) |
+| `size` | `number \| string` | `24` | Width & height in pixels (e.g. `24`, `36`, `48`, `64`, `128`) |
+| `color` | `string` | `"currentColor"` | Foreground color of the icon path (e.g. `#facc15`, `white`) |
+| `bg` | `string` | `"transparent"` | Background color. Use `"none"` or `"transparent"` for alpha transparency. |
+| `ring` | `string` | `"none"` | Outer border/rim contrast color. Use `"none"` to remove the border completely. |
+| `effect` | `string` | `"none"` | 3D lighting effect: `"none"`, `"medallion"`, `"button"`, `"glass"`, `"emboss"`, `"glow"` |
+| `radius` | `string` | `"0"` | Border radius: `"50%"`, `"circle"`, `"16"`, `"8"`, `"0"` |
+| `variant` | `string` | `"auto"` | Optical cut: `"auto"` ($<48\text{px}$ compact, $\ge 48\text{px}$ detailed), `"compact"`, `"detailed"` |
+| `padding` | `string` | `auto` | Inner padding. Defaults to `0px` when background is transparent. |
+| `border` | `string` | `auto` | Custom CSS border override (e.g. `2px dashed gold`) |
 
 ---
 
@@ -208,10 +224,10 @@ Frosted glass translucent container with `backdrop-filter: blur(12px)`.
 
 ## 💻 JavaScript API
 
-The package exposes the canonical icon list and the custom element class:
+The package exposes the canonical icon list, detailed/compact maps, and the custom element class:
 
 ```js
-import { AstroRashi, rashiIcons } from "@astro/icons";
+import { AstroRashi, rashiIcons, detailedIcons, compactIcons } from "@arivedha/astro-icons";
 
 console.log(rashiIcons);
 // ["mesha", "rishabha", "mithuna", "kataka", "simha", "kanya", "thula", "vrischika", "dhanus", "makara", "kumbha", "meena"]
@@ -254,4 +270,4 @@ Open `http://localhost:5173` in your browser.
 
 ## 📄 License
 
-MIT License © 2026 [Sudhakar Balakrishnan](https://github.com/Sudhakar77777). Free for personal and commercial astrology applications, horoscopes, panchangam software, and web portals.
+MIT License © 2026 [Arivedha](https://arivedha.us) / [Sudhakar Balakrishnan](https://github.com/Sudhakar77777). Free for personal and commercial astrology applications, horoscopes, panchangam software, and web portals.

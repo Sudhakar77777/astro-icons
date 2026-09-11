@@ -73,7 +73,7 @@ npm registry
 The main Astro application consumes it with:
 
 ```bash
-npm install @PACKAGE_NAME/astro-icons
+npm install @arivedha/astro-icons
 ```
 
 The exact npm package name/scope should be configurable and decided before publishing.
@@ -220,7 +220,7 @@ Examples:
 Zero runtime dependencies (`dependencies: {}`). Consuming applications only need:
 
 ```js
-import "@PACKAGE_NAME/astro-icons";
+import "@arivedha/astro-icons";
 ```
 
 and then use `<astro-rashi icon="mesha"></astro-rashi>` in HTML, JSX, or Astro.

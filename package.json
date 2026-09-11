@@ -1,5 +1,5 @@
 {
-  "name": "@astro/icons",
+  "name": "@arivedha/astro-icons",
   "version": "0.1.0",
   "description": "SVG Web Components for Indian astrology",
   "type": "module",
@@ -7,7 +7,6 @@
   "module": "./dist/index.js",
   "exports": {
     ".": "./dist/index.js",
-    "./react": "./src/react.js",
     "./rashi/*": "./src/rashi/*",
     "./rashi/compact/*": "./src/rashi/compact/*"
   },
@@ -28,24 +27,21 @@
     "svg",
     "web-components"
   ],
-  "author": "Sudhakar Balakrishnan <sudhakar.ai77777@gmail.com> (https://github.com/Sudhakar77777)",
+  "author": "Sudhakar Balakrishnan <sudhakar.ai77777@gmail.com> (https://arivedha.us)",
+  "homepage": "https://arivedha.us",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sudhakar77777/astro-icons.git"
   },
+  "bugs": {
+    "url": "https://github.com/Sudhakar77777/astro-icons/issues"
+  },
   "license": "MIT",
   "devDependencies": {
-    "imagetracerjs": "^1.2.6",
-    "potrace": "^2.1.8",
-    "sharp": "^0.35.4",
     "vite": "^7.0.0"
   },
-  "peerDependencies": {
-    "react": ">=16.8.0"
-  },
-  "peerDependenciesMeta": {
-    "react": {
-      "optional": true
-    }
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
