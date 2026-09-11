@@ -1,22 +1,29 @@
-# @astro/icons — 12 Vedic Rāśi Icon System
+# @astro/icons
 
-A gold-standard vector SVG iconography system for Indian Vedic Astrology (12 Rāśi), designed for temple-grade authenticity and publication-level media aesthetics (inspired by Tamil Rasipalan & Dinamalar gold medallions).
+[![npm version](https://img.shields.io/badge/npm-v0.1.0-blue.svg)](https://www.npmjs.com/package/@astro/icons)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Dependencies](https://img.shields.io/badge/dependencies-0-success.svg)](#)
+[![Bundle Size](https://img.shields.io/badge/bundle-zero--runtime--deps-emerald.svg)](#)
 
-Built with **100% `currentColor` scalable vector paths**, **automatic optical sizing** (Detailed for large displays, Clean Micro-Cuts for small UI buttons), **3D medallion & glassmorphism effects**, and **100% transparent background support**.
+A gold-standard vector SVG iconography package for **Indian & Vedic Astrology** (12 Rāśi / Zodiac Signs).
+
+Engineered for temple-grade authenticity and publication-level media aesthetics (inspired by traditional Tamil Rasipalan & Dinamalar gold medallions). Built as a lightweight, zero-runtime-dependency Web Component library with first-class support for **Vanilla HTML**, **Astro**, **React**, **Vue**, and **Svelte**.
 
 ---
 
 ## ✨ Features
 
-- **🏛 Temple-Grade Authenticity**: True Vedic iconography without cartoonish faces or exaggerated eyes.
-- **🎨 100% Monochromatic `currentColor`**: Automatically inherits text colors or custom hex/RGB colors.
-- **⚡ Dual Optical Sizing Architecture**:
-  - **`detailed` ($\ge 48\text{px}$)**: High-resolution temple engraving with fine lines and delicate textures.
-  - **`compact` ($< 48\text{px}$)**: Cleaned micro-cuts with hairline noise filtered out for crisp 24px/36px legibility.
-  - **`auto`**: Seamlessly switches variants based on the `size` attribute.
+- **🏛 Authentic Temple-Grade Iconography**: Gold-standard traditional Vedic artwork without cartoonish faces or exaggerated expressions.
+- **⚡ Zero Runtime Dependencies**: Pure, vanilla Web Component architecture (`<astro-rashi>`) that runs natively in every modern browser.
+- **🎨 100% `currentColor` Theming**: Vector paths inherit text color automatically, or can be customized to any hex/RGB color.
+- **🔍 Dual Optical Sizing**:
+  - **`detailed` ($\ge 48\text{px}$)**: High-resolution temple engraving with fine details and rich textures.
+  - **`compact` ($< 48\text{px}$)**: Cleaned micro-cuts with hairline noise filtered out for sharp $24\text{px}$ and $36\text{px}$ legibility.
+  - **`auto`**: Seamlessly switches between detailed and compact variants based on the `size` attribute.
 - **🛡 Circular Safe-Zone Guaranteed**: All 12 icons are calibrated inside 740–780px circular safe zones so they **never collide with or intersect the rim** when `radius="50%"`.
-- **✨ 3D Medallion & Lighting Effects**: Includes 3D Gold Medallion, Raised Tactical Button, Glassmorphism, Inset Carved, and Sacred Glow.
-- **🌐 Universal Framework Support**: Native Web Component (`<astro-rashi>`), first-class React wrapper (`<Rashi />`), and raw SVG files.
+- **🏆 3D Stamped Medallion & Lighting**: Built-in 3D Gold Medallion, Raised Tactical Button, Glassmorphism, Inset Carved, and Sacred Glow presets.
+- **🏁 100% Transparent Background Support**: Setting `bg="none"` or `bg="transparent"` yields true alpha transparency with zero background boxes, zero padding, and zero circular smudges.
+- **⚛️ Universal Framework Support**: Works natively in HTML, Astro, React, Next.js, Vite, Vue, and Svelte.
 
 ---
 
@@ -26,28 +33,27 @@ Built with **100% `currentColor` scalable vector paths**, **automatic optical si
 npm install @astro/icons
 ```
 
-Or clone/copy the repository directly into your project:
+Or clone the repository directly:
 
 ```bash
-git clone https://github.com/your-org/astro-icons.git
+git clone https://github.com/Sudhakar77777/astro-icons.git
 ```
 
 ---
 
 ## 🚀 Quick Start Guide
 
-### 1. Plain HTML / Vanilla JS (Web Component)
+### 1. Plain HTML / Vanilla JS
 
-Import the component script once in your HTML `<head>` or module bundle:
+Import the component once in your application entry or HTML `<head>`:
 
 ```html
-<!-- Import via ES Module -->
-<script type="module" src="node_modules/@astro/icons/src/components/rashi.js"></script>
+<script type="module" src="node_modules/@astro/icons/dist/index.js"></script>
 
-<!-- 1. Pure Flat Vector on Transparent Background (Zero Rim, Zero Dark Box) -->
+<!-- 1. Pure Flat Vector on Transparent Background (No Rim, No Background) -->
 <astro-rashi icon="simha" size="48" color="#facc15" bg="none" ring="none"></astro-rashi>
 
-<!-- 2. Small 24px Navigation Icon (Automatically uses Clean Micro-Cut) -->
+<!-- 2. Small 24px Navigation Bar Icon (Auto-switches to Clean Micro-Cut) -->
 <astro-rashi icon="mesha" size="24" color="#38bdf8" bg="none" ring="none"></astro-rashi>
 
 <!-- 3. Authentic 3D Gold Medallion on Crimson Background -->
@@ -59,9 +65,32 @@ Import the component script once in your HTML `<head>` or module bundle:
 
 ---
 
-### 2. React (Next.js / Vite / CRA / Remix)
+### 2. Astro Framework (`.astro`)
 
-Import the `<Rashi />` React component:
+Import `@astro/icons` in your Astro component frontmatter:
+
+```astro
+---
+import "@astro/icons";
+---
+
+<div class="zodiac-grid">
+  <!-- Flat Vector -->
+  <astro-rashi icon="mesha" size="48" color="#7C2D12" />
+
+  <!-- 3D Gold Medallion -->
+  <astro-rashi icon="simha" size="64" color="#facc15" bg="#781d1d" ring="#facc15" effect="medallion" radius="50%" />
+
+  <!-- Tactical Button -->
+  <astro-rashi icon="kanya" size="48" color="#10b981" bg="#022c22" ring="#059669" effect="button" radius="10" />
+</div>
+```
+
+---
+
+### 3. React / Next.js (`.jsx` / `.tsx`)
+
+Use the `<Rashi />` React component wrapper:
 
 ```jsx
 import React from 'react';
@@ -75,11 +104,11 @@ export function HoroscopeCard() {
         icon="simha" 
         size={36} 
         color="#facc15" 
-        bg="transparent" 
+        bg="none" 
         ring="none" 
       />
 
-      {/* 3D Gold Medallion with Custom Rim */}
+      {/* 3D Gold Medallion */}
       <Rashi 
         icon="kanya" 
         size={64} 
@@ -89,68 +118,57 @@ export function HoroscopeCard() {
         effect="medallion" 
         radius="50%" 
       />
-
-      {/* Force Detailed Variant */}
-      <Rashi 
-        icon="dhanus" 
-        size={96} 
-        color="#ffffff" 
-        bg="#0f172a" 
-        variant="detailed" 
-        radius="16" 
-      />
     </div>
   );
 }
 ```
 
+*Note: You can also use `<astro-rashi>` directly in React 19+ and Next.js App Router.*
+
 ---
 
-### 3. Direct SVG Imports (Framework-Agnostic)
+### 4. Direct Raw SVG Imports
 
 All 12 icons are available as standalone SVGs in both Detailed and Clean Compact variants:
 
-- **Detailed SVGs**: `node_modules/@astro/icons/src/rashi/[icon].svg`
-- **Clean Compact SVGs**: `node_modules/@astro/icons/src/rashi/compact/[icon].svg`
-
-#### Using with Vite / Webpack / Next.js Image:
+- **Detailed SVGs**: `@astro/icons/rashi/[icon].svg`
+- **Clean Compact SVGs**: `@astro/icons/rashi/compact/[icon].svg`
 
 ```jsx
-import SimhaDetailed from '@astro/icons/src/rashi/simha.svg';
-import SimhaCompact from '@astro/icons/src/rashi/compact/simha.svg';
+import SimhaSvg from '@astro/icons/rashi/simha.svg';
 
-<img src={SimhaDetailed} width={64} height={64} alt="Simha" />
+<img src={SimhaSvg} width="64" height="64" alt="Simha Rāśi" />
 ```
 
 ---
 
 ## 📜 12 Rāśi ID Reference
 
-| ID | Sanskrit Name | Tamil Name (தமிழ்) | Symbol | Ruling Planet | Element |
+| ID | Sanskrit Name | Tamil Name (தமிழ்) | English / Western Symbol | Ruling Planet | Element |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `mesha` | Meṣa | மேஷம் | Ram / Aries | Mars (செவ்வாய்) | Fire |
-| `rishabha` | Vṛṣabha | ரிஷபம் | Bull / Taurus | Venus (சுக்கிரன்) | Earth |
-| `mithuna` | Mithuna | மிதுனம் | Twins / Gemini | Mercury (புதன்) | Air |
-| `kataka` | Karkaṭa | கடகம் | Crab / Cancer | Moon (சந்திரன்) | Water |
-| `simha` | Siṃha | சிம்மம் | Lion / Leo | Sun (சூரியன்) | Fire |
-| `kanya` | Kanyā | கன்னி | Maiden / Virgo | Mercury (புதன்) | Earth |
-| `thula` | Tulā | துலாம் | Balance Scales / Libra | Venus (சுக்கிரன்) | Air |
-| `vrischika` | Vṛścika | விருச்சிகம் | Scorpion / Scorpio | Mars (செவ்வாய்) | Water |
-| `dhanus` | Dhanus | தனுசு | Bow & Arrow / Sagittarius | Jupiter (குரு) | Fire |
-| `makara` | Makara | மகரம் | Makara Sea-Beast / Capricorn | Saturn (சனி) | Earth |
-| `kumbha` | Kumbha | கும்பம் | Kalasha Water Pot / Aquarius | Saturn (சனி) | Air |
-| `meena` | Mīna | மீனம் | Twin Fish / Pisces | Jupiter (குரு) | Water |
+| `mesha` | Meṣa | மேஷம் | Ram (Aries) | Mars (செவ்வாய்) | Fire |
+| `rishabha` | Vṛṣabha | ரிஷபம் | Bull (Taurus) | Venus (சுக்கிரன்) | Earth |
+| `mithuna` | Mithuna | மிதுனம் | Twins (Gemini) | Mercury (புதன்) | Air |
+| `kataka` | Karkaṭa | கடகம் | Crab (Cancer) | Moon (சந்திரன்) | Water |
+| `simha` | Siṃha | சிம்மம் | Lion (Leo) | Sun (சூரியன்) | Fire |
+| `kanya` | Kanyā | கன்னி | Maiden (Virgo) | Mercury (புதன்) | Earth |
+| `thula` | Tulā | துலாம் | Balance Scales (Libra) | Venus (சுக்கிரன்) | Air |
+| `vrischika` | Vṛścika | விருச்சிகம் | Scorpion (Scorpio) | Mars (செவ்வாய்) | Water |
+| `dhanus` | Dhanus | தனுசு | Bow & Arrow (Sagittarius) | Jupiter (குரு) | Fire |
+| `makara` | Makara | மகரம் | Makara Sea-Beast (Capricorn) | Saturn (சனி) | Earth |
+| `kumbha` | Kumbha | கும்பம் | Kalasha Water Pot (Aquarius) | Saturn (சனி) | Air |
+| `meena` | Mīna | மீனம் | Twin Fish (Pisces) | Jupiter (குரு) | Water |
 
 ---
 
-## ⚙️ Attributes / Props Reference
+## ⚙️ Attributes & Props Reference
 
 | Attribute (HTML) | Prop (React) | Type | Default | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | `icon` | `icon` | `string` | **(Required)** | One of the 12 Rāśi IDs (e.g. `simha`, `kanya`, `mesha`) |
 | `size` | `size` | `number \| string` | `24` | Width & height in pixels (e.g. `24`, `36`, `48`, `64`, `128`) |
 | `color` | `color` | `string` | `"currentColor"` | Foreground color of the icon path (e.g. `#facc15`, `white`) |
-| `bg` | `bg` | `string` | `"transparent"` | Background color. Use `"none"` or `"transparent"` for 100% alpha transparency. |
+| `bg` | `bg` | `string` | `"transparent"` | Background color. Use `"none"` or `"transparent"` for alpha transparency. |
 | `ring` | `ring` | `string` | `"none"` | Outer border/rim contrast color. Use `"none"` to remove the border completely. |
 | `effect` | `effect` | `string` | `"none"` | 3D lighting effect: `"none"`, `"medallion"`, `"button"`, `"glass"`, `"emboss"`, `"glow"` |
 | `radius` | `radius` | `string` | `"0"` | Border radius: `"50%"`, `"circle"`, `"16"`, `"8"`, `"0"` |
@@ -160,10 +178,10 @@ import SimhaCompact from '@astro/icons/src/rashi/compact/simha.svg';
 
 ---
 
-## 🎨 Visual Effects Guide
+## 🎨 Visual Effects & Presets
 
 ### 1. Pure Flat Vector (`effect="none"`)
-No shadows or borders. Pure, crisp vector silhouette inheriting parent text color.
+Renders crisp vector contours that inherit parent typography color via `currentColor`.
 ```html
 <astro-rashi icon="simha" size="36" color="#facc15" bg="none" ring="none"></astro-rashi>
 ```
@@ -188,9 +206,22 @@ Frosted glass translucent container with `backdrop-filter: blur(12px)`.
 
 ---
 
+## 💻 JavaScript API
+
+The package exposes the canonical icon list and the custom element class:
+
+```js
+import { AstroRashi, rashiIcons } from "@astro/icons";
+
+console.log(rashiIcons);
+// ["mesha", "rishabha", "mithuna", "kataka", "simha", "kanya", "thula", "vrischika", "dhanus", "makara", "kumbha", "meena"]
+```
+
+---
+
 ## 💻 CSS Variables Styling
 
-You can also style `<astro-rashi>` components dynamically using CSS Custom Properties:
+You can style `<astro-rashi>` components dynamically using CSS Custom Properties:
 
 ```css
 .my-custom-rashi {
@@ -208,18 +239,19 @@ You can also style `<astro-rashi>` components dynamically using CSS Custom Prope
 
 ---
 
-## 🧪 Interactive Studio Workbench
+## 🧪 Local Studio Workbench
 
-To explore and test all 12 icons in real time with live color pickers, dual comparison panes, and multi-scale matrix:
+To run the interactive dual-pane testing studio with live color pickers and multi-scale matrix:
 
 ```bash
+npm install
 npm run dev
 ```
 
-Open your browser at `http://localhost:5173` to launch the **12 Rāśi Multi-Scale & 3D Medallion Studio**.
+Open `http://localhost:5173` in your browser.
 
 ---
 
 ## 📄 License
 
-MIT License. Free for personal and commercial astrology applications, horoscopes, panchangam software, and web portals.
+MIT License © 2026 [Sudhakar Balakrishnan](https://github.com/Sudhakar77777). Free for personal and commercial astrology applications, horoscopes, panchangam software, and web portals.

@@ -6,10 +6,14 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.js",
+    "./react": "./src/react.js",
+    "./rashi/*": "./src/rashi/*",
+    "./rashi/compact/*": "./src/rashi/compact/*"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "dev": "vite",
