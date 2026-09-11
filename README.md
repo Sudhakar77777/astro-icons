@@ -198,16 +198,16 @@ You can configure `<astro-rashi>` components using HTML attributes, or using equ
 
 | Attribute | CSS Variable Equivalent | Type | Default | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| `icon` | — | `string` | **(Required)** | One of the 12 Rāśi IDs (e.g. `simha`, `kanya`, `mesha`) |
-| `size` | — | `number \| string` | `24` | Width & height in pixels (e.g. `24`, `36`, `48`, `64`, `128`) |
+| `icon` | `--rashi-icon` | `string` | **(Required)** | One of the 12 Rāśi IDs (e.g. `simha`, `kanya`, `mesha`) |
+| `size` | `--rashi-size` | `number \| string` | `24` | Width & height in pixels (e.g. `24`, `36`, `48`, `64`, `128`) |
 | `color` | `--rashi-color` | `string` | `"currentColor"` | Foreground color of the icon vector path (e.g. `#facc15`, `white`) |
 | `bg` | `--rashi-bg` | `string` | `"transparent"` | Container background color. Use `"none"` or `"transparent"` for alpha transparency. |
 | `ring` | `--rashi-ring` | `string` | `"none"` | Outer border/rim contrast color. Use `"none"` to remove border completely. |
 | `effect` | `--rashi-effect` | `string` | `"none"` | 3D lighting effect: `"none"`, `"medallion"`, `"button"`, `"glass"`, `"emboss"`, `"glow"` |
 | `radius` | `--rashi-radius` | `string` | `"0"` | Corner curvature: `"50%"`, `"circle"`, `"16"`, `"10"`, `"0"` |
-| `variant` | — | `string` | `"auto"` | Optical sizing: `"auto"` ($<48\text{px}$ compact, $\ge 48\text{px}$ detailed), `"compact"`, `"detailed"` |
-| `padding` | — | `string` | `auto` | Inner padding around vector icon. Defaults to `0px` when background is transparent. |
-| `border` | — | `string` | `auto` | Custom CSS border override (e.g. `2px dashed gold`) |
+| `variant` | `--rashi-variant` | `string` | `"auto"` | Optical sizing: `"auto"` ($<48\text{px}$ compact, $\ge 48\text{px}$ detailed), `"compact"`, `"detailed"` |
+| `padding` | `--rashi-padding` | `string` | `auto` | Inner padding around vector icon. Defaults to `0px` when background is transparent. |
+| `border` | `--rashi-border` | `string` | `auto` | Custom CSS border override (e.g. `2px dashed gold`) |
 
 ---
 

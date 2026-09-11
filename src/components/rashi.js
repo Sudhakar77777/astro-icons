@@ -60,11 +60,6 @@ export class AstroRashi extends BaseElement {
 
     render() {
         if (typeof document === "undefined") return;
-        const name = this.getAttribute("icon");
-        const sizeAttr = this.getAttribute("size") || "24";
-        const numericSize = parseInt(sizeAttr, 10) || 24;
-        
-        const variantAttr = this.getAttribute("variant") || "auto";
         const getCssVar = (name) => {
             const inline = this.style.getPropertyValue(name);
             if (inline) return inline.trim();
@@ -73,6 +68,12 @@ export class AstroRashi extends BaseElement {
             }
             return "";
         };
+
+        const name = this.getAttribute("icon") || getCssVar("--rashi-icon");
+        const sizeAttr = this.getAttribute("size") || getCssVar("--rashi-size") || "24";
+        const numericSize = parseInt(sizeAttr.toString().replace("px", ""), 10) || 24;
+        
+        const variantAttr = this.getAttribute("variant") || getCssVar("--rashi-variant") || "auto";
 
         const color = this.getAttribute("color") || getCssVar("--rashi-color") || "currentColor";
         
@@ -83,7 +84,7 @@ export class AstroRashi extends BaseElement {
 
         const radius = this.getAttribute("radius") || getCssVar("--rashi-radius") || "0";
         const effect = this.getAttribute("effect") || getCssVar("--rashi-effect") || "none";
-        const padAttr = this.getAttribute("padding");
+        const padAttr = this.getAttribute("padding") || getCssVar("--rashi-padding");
         
         // Customizable Outside Line / Rim Color: "none" or "transparent" removes border completely
         let ringColor = this.getAttribute("ring") || 
@@ -96,7 +97,7 @@ export class AstroRashi extends BaseElement {
         }
 
         const hasBorder = ringColor && ringColor !== "none" && ringColor !== "transparent";
-        const customBorder = this.getAttribute("border");
+        const customBorder = this.getAttribute("border") || getCssVar("--rashi-border");
 
         // Optical Sizing selection
         let isCompact = false;
