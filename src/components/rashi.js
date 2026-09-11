@@ -65,22 +65,31 @@ export class AstroRashi extends BaseElement {
         const numericSize = parseInt(sizeAttr, 10) || 24;
         
         const variantAttr = this.getAttribute("variant") || "auto";
-        const color = this.getAttribute("color") || this.style.getPropertyValue("--rashi-color") || "currentColor";
+        const getCssVar = (name) => {
+            const inline = this.style.getPropertyValue(name);
+            if (inline) return inline.trim();
+            if (typeof window !== "undefined" && window.getComputedStyle) {
+                return window.getComputedStyle(this).getPropertyValue(name).trim();
+            }
+            return "";
+        };
+
+        const color = this.getAttribute("color") || getCssVar("--rashi-color") || "currentColor";
         
         // Background color handling: "none" or "transparent" is 100% transparent (no dark box)
-        let bg = this.getAttribute("bg") || this.style.getPropertyValue("--rashi-bg") || "transparent";
+        let bg = this.getAttribute("bg") || getCssVar("--rashi-bg") || "transparent";
         if (bg === "none" || bg === "null" || bg === "false") bg = "transparent";
         const isTransparentBg = bg === "transparent";
 
-        const radius = this.getAttribute("radius") || this.style.getPropertyValue("--rashi-radius") || "0";
-        const effect = this.getAttribute("effect") || this.style.getPropertyValue("--rashi-effect") || "none";
+        const radius = this.getAttribute("radius") || getCssVar("--rashi-radius") || "0";
+        const effect = this.getAttribute("effect") || getCssVar("--rashi-effect") || "none";
         const padAttr = this.getAttribute("padding");
         
         // Customizable Outside Line / Rim Color: "none" or "transparent" removes border completely
         let ringColor = this.getAttribute("ring") || 
                         this.getAttribute("border-color") || 
-                        this.style.getPropertyValue("--rashi-ring") || 
-                        this.style.getPropertyValue("--rashi-border-color");
+                        getCssVar("--rashi-ring") || 
+                        getCssVar("--rashi-border-color");
 
         if (!ringColor) {
             ringColor = (effect === "none" || isTransparentBg) ? "none" : color;

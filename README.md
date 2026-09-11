@@ -194,18 +194,20 @@ import SimhaSvg from '@arivedha/astro-icons/rashi/simha.svg';
 
 ## ⚙️ Attributes Reference
 
-| Attribute | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `icon` | `string` | **(Required)** | One of the 12 Rāśi IDs (e.g. `simha`, `kanya`, `mesha`) |
-| `size` | `number \| string` | `24` | Width & height in pixels (e.g. `24`, `36`, `48`, `64`, `128`) |
-| `color` | `string` | `"currentColor"` | Foreground color of the icon path (e.g. `#facc15`, `white`) |
-| `bg` | `string` | `"transparent"` | Background color. Use `"none"` or `"transparent"` for alpha transparency. |
-| `ring` | `string` | `"none"` | Outer border/rim contrast color. Use `"none"` to remove the border completely. |
-| `effect` | `string` | `"none"` | 3D lighting effect: `"none"`, `"medallion"`, `"button"`, `"glass"`, `"emboss"`, `"glow"` |
-| `radius` | `string` | `"0"` | Border radius: `"50%"`, `"circle"`, `"16"`, `"8"`, `"0"` |
-| `variant` | `string` | `"auto"` | Optical cut: `"auto"` ($<48\text{px}$ compact, $\ge 48\text{px}$ detailed), `"compact"`, `"detailed"` |
-| `padding` | `string` | `auto` | Inner padding. Defaults to `0px` when background is transparent. |
-| `border` | `string` | `auto` | Custom CSS border override (e.g. `2px dashed gold`) |
+You can configure `<astro-rashi>` components using HTML attributes, or using equivalent CSS Custom Properties.
+
+| Attribute | CSS Variable Equivalent | Type | Default | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| `icon` | — | `string` | **(Required)** | One of the 12 Rāśi IDs (e.g. `simha`, `kanya`, `mesha`) |
+| `size` | — | `number \| string` | `24` | Width & height in pixels (e.g. `24`, `36`, `48`, `64`, `128`) |
+| `color` | `--rashi-color` | `string` | `"currentColor"` | Foreground color of the icon vector path (e.g. `#facc15`, `white`) |
+| `bg` | `--rashi-bg` | `string` | `"transparent"` | Container background color. Use `"none"` or `"transparent"` for alpha transparency. |
+| `ring` | `--rashi-ring` | `string` | `"none"` | Outer border/rim contrast color. Use `"none"` to remove border completely. |
+| `effect` | `--rashi-effect` | `string` | `"none"` | 3D lighting effect: `"none"`, `"medallion"`, `"button"`, `"glass"`, `"emboss"`, `"glow"` |
+| `radius` | `--rashi-radius` | `string` | `"0"` | Corner curvature: `"50%"`, `"circle"`, `"16"`, `"10"`, `"0"` |
+| `variant` | — | `string` | `"auto"` | Optical sizing: `"auto"` ($<48\text{px}$ compact, $\ge 48\text{px}$ detailed), `"compact"`, `"detailed"` |
+| `padding` | — | `string` | `auto` | Inner padding around vector icon. Defaults to `0px` when background is transparent. |
+| `border` | — | `string` | `auto` | Custom CSS border override (e.g. `2px dashed gold`) |
 
 ---
 
@@ -235,6 +237,18 @@ Frosted glass translucent container with `backdrop-filter: blur(12px)`.
 <astro-rashi icon="kanya" size="56" color="#38bdf8" bg="rgba(255,255,255,0.08)" ring="rgba(255,255,255,0.2)" effect="glass" radius="16"></astro-rashi>
 ```
 
+### 5. Inset Carved Stamping (`effect="emboss"`)
+Simulates engraved stone carving with deep inset shadows.
+```html
+<astro-rashi icon="vrischika" size="56" color="#cbd5e1" bg="#090d16" ring="none" effect="emboss" radius="12"></astro-rashi>
+```
+
+### 6. Sacred Aura Glow (`effect="glow"`)
+Radiates a warm, ethereal golden glow around the emblem.
+```html
+<astro-rashi icon="simha" size="64" color="#facc15" bg="#1a1300" ring="#eab308" effect="glow" radius="50%"></astro-rashi>
+```
+
 ---
 
 ## 💻 JavaScript API
@@ -250,22 +264,33 @@ console.log(rashiIcons);
 
 ---
 
-## 💻 CSS Variables Styling
+## 💻 CSS Variables & Stylesheet Classes
 
-You can style `<astro-rashi>` components dynamically using CSS Custom Properties:
+All visual attributes can be styled dynamically via CSS Custom Properties. You can apply these either via inline `style=""` or in your global CSS stylesheets:
 
 ```css
-.my-custom-rashi {
+/* Custom class in your stylesheet */
+.temple-gold-badge {
   --rashi-color: #facc15;
   --rashi-bg: #781d1d;
   --rashi-ring: #facc15;
   --rashi-radius: 50%;
   --rashi-effect: medallion;
 }
+
+.tactical-nav-icon {
+  --rashi-color: #ffffff;
+  --rashi-bg: #111827;
+  --rashi-ring: #38bdf8;
+  --rashi-radius: 12px;
+  --rashi-effect: button;
+}
 ```
 
 ```html
-<astro-rashi icon="simha" size="64" class="my-custom-rashi"></astro-rashi>
+<!-- Component inherits styles from the CSS class -->
+<astro-rashi icon="simha" size="64" class="temple-gold-badge"></astro-rashi>
+<astro-rashi icon="makara" size="48" class="tactical-nav-icon"></astro-rashi>
 ```
 
 ---
