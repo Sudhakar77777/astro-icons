@@ -16,7 +16,9 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "build:demo": "vite build --config vite.config.demo.js",
+    "test": "node --test tests/*.test.js"
   },
   "keywords": [
     "astrology",

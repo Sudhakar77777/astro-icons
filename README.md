@@ -1,6 +1,8 @@
 # @arivedha/astro-icons
 
 [![npm version](https://img.shields.io/npm/v/@arivedha/astro-icons.svg?color=blue)](https://www.npmjs.com/package/@arivedha/astro-icons)
+[![CI](https://github.com/Sudhakar77777/astro-icons/actions/workflows/ci.yml/badge.svg)](https://github.com/Sudhakar77777/astro-icons/actions/workflows/ci.yml)
+[![Live Demo Workbench](https://img.shields.io/badge/Live%20Demo-Interactive%20Workbench-gold.svg)](https://sudhakar77777.github.io/astro-icons/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-success.svg)](#)
 [![Bundle Size](https://img.shields.io/badge/bundle-zero--runtime--deps-emerald.svg)](#)
@@ -8,6 +10,19 @@
 A gold-standard vector SVG iconography package for **Indian & Vedic Astrology** (12 Rāśi / Zodiac Signs).
 
 Engineered for temple-grade authenticity and publication-level media aesthetics (inspired by traditional Tamil Rasipalan & Dinamalar gold medallions). Built as a lightweight, **zero-runtime-dependency** Web Component library with first-class support for **Vanilla HTML**, **Astro**, **React**, **Next.js**, **Vue**, and **Svelte**.
+
+---
+
+## 🌐 Live Interactive Playground & Studio
+
+Experience and configure all 12 Vedic Rāśi icons first-hand in our live browser studio:
+
+👉 **[https://sudhakar77777.github.io/astro-icons/](https://sudhakar77777.github.io/astro-icons/)**
+
+- **⚡ Dual-Pane Live Customizer**: Test color pickers, background colors, circular vs square borders, lighting bevels, and glow effects side-by-side with live HTML code generation.
+- **🔍 6-Tier Optical Sizing Matrix**: Inspect all 12 signs across $128\text{px}$, $96\text{px}$, $64\text{px}$, $48\text{px}$, $36\text{px}$, and $24\text{px}$.
+- **🏆 1-Click Stamped 3D Presets**: Test Gold Medallions, Tactical Buttons, Inset Carved, Sacred Glow, and Frosted Glassmorphism.
+- **🎨 Canvas Themes**: Switch live preview backgrounds between Dark Nebula, Light Slate, Vintage Parchment, and Checkerboard Alpha.
 
 ---
 
@@ -255,16 +270,21 @@ You can style `<astro-rashi>` components dynamically using CSS Custom Properties
 
 ---
 
-## 🧪 Local Studio Workbench
+## 🧪 Interactive Studio Workbench
 
-To run the interactive dual-pane testing studio with live color pickers and multi-scale matrix:
+You can preview and interact with the workbench either online or locally:
 
-```bash
-npm install
-npm run dev
-```
-
-Open `http://localhost:5173` in your browser.
+- **🌐 Live Hosted Studio**: [https://sudhakar77777.github.io/astro-icons/](https://sudhakar77777.github.io/astro-icons/)
+- **💻 Run Locally**:
+  ```bash
+  npm install
+  npm run dev
+  ```
+  Open `http://localhost:5173` in your browser.
+- **🏗 Build Workbench for Static Hosting**:
+  ```bash
+  npm run build:demo
+  ```
 
 ---
 
