@@ -24,9 +24,28 @@ for (const [path, svg] of Object.entries(compactModules)) {
     compactIcons[name] = svg;
 }
 
-class RashiIcon extends HTMLElement {
+export const rashiIcons = Object.freeze([
+    "mesha",
+    "rishabha",
+    "mithuna",
+    "kataka",
+    "simha",
+    "kanya",
+    "thula",
+    "vrischika",
+    "dhanus",
+    "makara",
+    "kumbha",
+    "meena"
+]);
+
+const BaseElement = typeof HTMLElement !== "undefined" ? HTMLElement : class {};
+
+export class AstroRashi extends BaseElement {
     connectedCallback() {
-        this.render();
+        if (typeof document !== "undefined") {
+            this.render();
+        }
     }
 
     static get observedAttributes() {
@@ -34,10 +53,13 @@ class RashiIcon extends HTMLElement {
     }
 
     attributeChangedCallback() {
-        this.render();
+        if (typeof document !== "undefined") {
+            this.render();
+        }
     }
 
     render() {
+        if (typeof document === "undefined") return;
         const name = this.getAttribute("icon");
         const sizeAttr = this.getAttribute("size") || "24";
         const numericSize = parseInt(sizeAttr, 10) || 24;
@@ -69,19 +91,19 @@ class RashiIcon extends HTMLElement {
 
         // Optical Sizing selection
         let isCompact = false;
-        if (variantAttr === "compact" || variantAttr === "solid") {
+        if (variantAttr === "compact" || variantAttr === "clean" || variantAttr === "solid") {
             isCompact = true;
         } else if (variantAttr === "detailed") {
             isCompact = false;
         } else {
-            // "auto" mode: use pure solid silhouette for small UI sizes (< 48px)
+            // "auto" mode: use clean micro-cut for small UI sizes (< 48px)
             isCompact = numericSize < 48;
         }
 
         const iconPool = isCompact && compactIcons[name] ? compactIcons : detailedIcons;
 
         if (!name || !iconPool[name]) {
-            console.warn(`Unknown rashi icon: ${name} (variant: ${isCompact ? "compact" : "detailed"})`);
+            console.warn(`Unknown rashi icon: "${name}". Valid icons: ${rashiIcons.join(", ")}`);
             this.innerHTML = "";
             return;
         }
@@ -221,8 +243,8 @@ class RashiIcon extends HTMLElement {
     }
 }
 
-if (!customElements.get("astro-rashi")) {
-    customElements.define("astro-rashi", RashiIcon);
+if (typeof customElements !== "undefined" && !customElements.get("astro-rashi")) {
+    customElements.define("astro-rashi", AstroRashi);
 }
 
-export { RashiIcon, detailedIcons, compactIcons };
+export { AstroRashi as RashiIcon, detailedIcons, compactIcons };

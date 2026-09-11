@@ -1,19 +1,14 @@
 {
   "name": "@astro/icons",
-  "version": "1.0.0",
-  "description": "Gold-standard Vedic astrology SVG icons with optical sizing, 3D medallion effects, and React support",
+  "version": "0.1.0",
+  "description": "SVG Web Components for Indian astrology",
   "type": "module",
-  "main": "./src/index.js",
-  "module": "./src/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "exports": {
-    ".": "./src/index.js",
-    "./react": "./src/react.js",
-    "./components/rashi": "./src/components/rashi.js",
-    "./rashi/*": "./src/rashi/*",
-    "./rashi/compact/*": "./src/rashi/compact/*"
+    ".": "./dist/index.js"
   },
   "files": [
-    "src",
     "dist"
   ],
   "scripts": {
@@ -27,13 +22,13 @@
     "zodiac",
     "icons",
     "svg",
-    "web-components",
-    "react",
-    "horoscope",
-    "dinamalar",
-    "medallion"
+    "web-components"
   ],
-  "author": "",
+  "author": "Sudhakar Balakrishnan <sudhakar.ai77777@gmail.com> (https://github.com/Sudhakar77777)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sudhakar77777/astro-icons.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "imagetracerjs": "^1.2.6",
