@@ -2,8 +2,8 @@
 
 [![npm version](https://img.shields.io/npm/v/@arivedha/astro-icons.svg?color=blue)](https://www.npmjs.com/package/@arivedha/astro-icons)
 [![CI](https://github.com/Sudhakar77777/astro-icons/actions/workflows/ci.yml/badge.svg)](https://github.com/Sudhakar77777/astro-icons/actions/workflows/ci.yml)
-[![Live Demo Workbench](https://img.shields.io/badge/Live%20Demo-Interactive%20Workbench-gold.svg)](https://sudhakar77777.github.io/astro-icons/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Workbench-success.svg)](https://sudhakar77777.github.io/astro-icons/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-success.svg)](#)
 [![Bundle Size](https://img.shields.io/badge/bundle-zero--runtime--deps-emerald.svg)](#)
 
